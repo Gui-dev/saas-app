@@ -1,0 +1,17 @@
+{
+  "name": "@saas/auth",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@saas/typescript-config": "workspace:*"
+  },
+  "dependencies": {
+    "@casl/ability": "^6.7.3"
+  }
+}
