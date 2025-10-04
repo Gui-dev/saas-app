@@ -12,6 +12,7 @@
     "@saas/typescript-config": "workspace:*"
   },
   "dependencies": {
-    "@casl/ability": "^6.7.3"
+    "@casl/ability": "^6.7.3",
+    "zod": "^4.1.11"
   }
 }
