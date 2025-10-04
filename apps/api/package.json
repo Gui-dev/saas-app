@@ -1,0 +1,19 @@
+{
+  "name": "@saas/api",
+  "version": "1.0.0",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "@saas/auth": "workspace:*"
+  },
+  "devDependencies": {
+    "@saas/typescript-config": "workspace:*",
+    "@types/node": "^24.6.2",
+    "tsx": "^4.20.6"
+  }
+}
