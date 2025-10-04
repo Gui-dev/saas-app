@@ -2,29 +2,53 @@ import {
   AbilityBuilder,
   type CreateAbility,
   createMongoAbility,
-  type ForcedSubject,
   type MongoAbility,
 } from '@casl/ability'
+import { z } from 'zod'
+import type { User } from './models/user'
+import { permissions } from './permissions'
+import { billingSubject } from './subjects/billing'
+import { inviteSubject } from './subjects/invite'
+import { organizationSubject } from './subjects/organization'
+import { projectSubject } from './subjects/project'
+import { userSubject } from './subjects/user'
 
-const actions = ['manage', 'invite', 'delete'] as const
-const subjects = ['User', 'all'] as const
+export * from './models/organization'
+export * from './models/project'
+export * from './models/user'
 
-type AppAbilities = [
-  (typeof actions)[number],
-  (
-    | (typeof subjects)[number]
-    | ForcedSubject<Exclude<(typeof subjects)[number], 'all'>>
-  ),
-]
+const appAbilitiesSchema = z.union([
+  userSubject,
+  projectSubject,
+  organizationSubject,
+  inviteSubject,
+  billingSubject,
+  z.tuple([z.literal('manage'), z.literal('all')]),
+])
+
+type AppAbilities = z.infer<typeof appAbilitiesSchema>
 
 export type AppAbility = MongoAbility<AppAbilities>
 export const createAppAbility =
-  // @ts-ignore
+  // @ts-expect-error
   createMongoAbility as CreateAbility<AppAbilities>
-// @ts-ignore
-const { build, can, cannot } = new AbilityBuilder(createAppAbility)
 
-can('invite', 'User')
-cannot('delete', 'User')
+export const defineAbilityFor = (user: User) => {
+  // @ts-expect-error
+  const builder = new AbilityBuilder(createAppAbility)
 
-export const ability = build()
+  if (typeof permissions[user.role] !== 'function') {
+    throw new Error(`Permission for role: ${user.role} not found`)
+  }
+
+  // @ts-expect-error
+  permissions[user.role](user, builder)
+
+  const ability = builder.build({
+    detectSubjectType(subject) {
+      return subject.__typename
+    },
+  })
+
+  return ability
+}
