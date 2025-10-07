@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  pg:
+    image: bitnami/postgresql:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: saas
+    ports:
+      - 5432:5432

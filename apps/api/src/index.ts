@@ -1,12 +1,15 @@
-import { defineAbilityFor } from '@saas/auth'
+import { app } from '@/http/server'
 
-const ability = defineAbilityFor({ role: 'ADMIN' })
+const PORT = 3333
 
-const userCanInviteSomeoneElse = ability.can('invite', 'User')
-const userCanDeleteOtherUsers = ability.can('delete', 'User')
-
-const userCannotDeleteOtherUsers = ability.cannot('delete', 'User')
-
-console.log(userCanInviteSomeoneElse)
-console.log(userCanDeleteOtherUsers)
-console.log(userCannotDeleteOtherUsers)
+app
+  .listen({
+    port: PORT,
+  })
+  .then(() => {
+    console.log(`Server running on http://localhost:${PORT}`)
+  })
+  .catch(err => {
+    console.error(err)
+    process.exit(1)
+  })
