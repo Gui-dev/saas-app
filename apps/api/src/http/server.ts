@@ -13,6 +13,7 @@ import fastifyJWT from '@fastify/jwt'
 import { createAccount } from '@/modules/users/route/auth/create-account'
 import { authenticateWithPassword } from '@/modules/users/route/auth/authenticate-with-password'
 import { getProfile } from '@/modules/users/route/auth/get-profile'
+import { errorHandler } from './error-handler'
 
 const app = fastify({
   logger: {
@@ -28,6 +29,7 @@ const app = fastify({
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
 
+app.setErrorHandler(errorHandler)
 app.register(fastifyJWT, {
   secret: 'secret',
 })

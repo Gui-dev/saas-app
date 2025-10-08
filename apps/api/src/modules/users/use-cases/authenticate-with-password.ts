@@ -1,5 +1,6 @@
 import { compare } from 'bcryptjs'
 import { IUserRepositoryContract } from '../contracts/user-repository-contract'
+import { BadRequestError } from '@/http/_errors/bad-request-error'
 
 interface IAuthenticateWithPasswordRequest {
   email: string
@@ -17,7 +18,7 @@ export class AuthenticateWithPasswordUseCase {
     }
 
     if (userFromEmail.passwordHash === null) {
-      throw new Error(
+      throw new BadRequestError(
         'Invalid credentials. User does not have a password, use social login'
       )
     }
@@ -25,7 +26,7 @@ export class AuthenticateWithPasswordUseCase {
     const isPasswordValid = await compare(password, userFromEmail.passwordHash)
 
     if (!isPasswordValid) {
-      throw new Error('Invalid credentials')
+      throw new BadRequestError('Invalid credentials')
     }
 
     return {

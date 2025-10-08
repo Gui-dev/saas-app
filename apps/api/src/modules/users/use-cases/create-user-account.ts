@@ -4,6 +4,7 @@ import type {
   ICreateUser,
   IUserRepositoryContract,
 } from '../contracts/user-repository-contract'
+import { BadRequestError } from '@/http/_errors/bad-request-error'
 
 type CreateUserAccountProps = Omit<ICreateUser, 'organization'>
 
@@ -25,7 +26,7 @@ export class CreateUserAccount {
     const userAlreadyExists = await this.userRepository.findByEmail(email)
 
     if (userAlreadyExists) {
-      throw new Error('User already exists')
+      throw new BadRequestError('User already exists')
     }
 
     const [_, domain] = email.split('@')

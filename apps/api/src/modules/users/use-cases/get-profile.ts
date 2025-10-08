@@ -1,3 +1,4 @@
+import { BadRequestError } from '@/http/_errors/bad-request-error'
 import type { IUserRepositoryContract } from '../contracts/user-repository-contract'
 
 interface IGetProfileUseCaseRequest {
@@ -11,7 +12,7 @@ export class GetProfileUseCase {
     const user = await this.userRepository.findById(id)
 
     if (!user) {
-      throw new Error('User not found')
+      throw new BadRequestError('User not found')
     }
 
     return {
