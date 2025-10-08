@@ -8,8 +8,10 @@ import {
   validatorCompiler,
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
+import fastifyJWT from '@fastify/jwt'
 
 import { createAccount } from '@/modules/users/route/auth/create-account'
+import { authenticateWithPassword } from '@/modules/users/route/auth/authenticate-with-password'
 
 const app = fastify({
   logger: {
@@ -24,6 +26,10 @@ const app = fastify({
 
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
+
+app.register(fastifyJWT, {
+  secret: 'secret',
+})
 app.register(fastifyCors)
 
 app.register(fastifySwagger, {
@@ -43,5 +49,6 @@ app.register(fastifySwaggerUI, {
 })
 
 app.register(createAccount)
+app.register(authenticateWithPassword)
 
 export { app }
