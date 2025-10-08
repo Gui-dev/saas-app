@@ -1,5 +1,5 @@
-import { hash } from 'bcryptjs'
 import { faker } from '@faker-js/faker'
+import { hash } from 'bcryptjs'
 
 import { PrismaClient } from './../src/generated/prisma'
 
@@ -113,7 +113,6 @@ export const seed = async () => {
       slug: 'daily-planet',
       domain: 'dailyplanet.com',
       avatarUrl: faker.image.avatarGitHub(),
-      shouldAttachUsersByDomain: true,
       projects: {
         createMany: {
           data: [
@@ -181,7 +180,6 @@ export const seed = async () => {
       slug: 'billing-company',
       domain: 'billingcompany.com',
       avatarUrl: faker.image.avatarGitHub(),
-      shouldAttachUsersByDomain: true,
       projects: {
         createMany: {
           data: [
