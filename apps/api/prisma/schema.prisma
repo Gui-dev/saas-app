@@ -94,7 +94,7 @@ model Member {
 
 model Organization {
   id                        String   @id @default(uuid())
-  userId                    String   @map("user_id")
+  ownerId                   String   @map("owner_id")
   name                      String
   slug                      String   @unique
   domain                    String?  @unique
@@ -103,7 +103,7 @@ model Organization {
   createdAt                 DateTime @default(now()) @map("created_at")
   updatedAt                 DateTime @updatedAt @map("updated_at")
 
-  owner    User      @relation(fields: [userId], references: [id])
+  owner    User      @relation(fields: [ownerId], references: [id])
   invites  Invite[]
   members  Member[]
   projects Project[]
@@ -113,7 +113,7 @@ model Organization {
 
 model Project {
   id             String   @id @default(uuid())
-  userId         String   @map("user_id")
+  ownerId        String   @map("owner_id")
   organizationId String   @map("organization_id")
   name           String
   description    String
@@ -122,7 +122,7 @@ model Project {
   createdAt      DateTime @default(now()) @map("created_at")
   updatedAt      DateTime @updatedAt @map("updated_at")
 
-  owner        User         @relation(fields: [userId], references: [id])
+  owner        User         @relation(fields: [ownerId], references: [id])
   organization Organization @relation(fields: [organizationId], references: [id])
 
   @@map("projects")
