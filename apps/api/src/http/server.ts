@@ -12,6 +12,7 @@ import fastifyJWT from '@fastify/jwt'
 
 import { createAccount } from '@/modules/users/route/auth/create-account'
 import { authenticateWithPassword } from '@/modules/users/route/auth/authenticate-with-password'
+import { getProfile } from '@/modules/users/route/auth/get-profile'
 
 const app = fastify({
   logger: {
@@ -50,5 +51,6 @@ app.register(fastifySwaggerUI, {
 
 app.register(createAccount)
 app.register(authenticateWithPassword)
+app.register(getProfile)
 
 export { app }
