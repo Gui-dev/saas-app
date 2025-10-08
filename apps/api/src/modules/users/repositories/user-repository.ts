@@ -1,9 +1,9 @@
-import { User } from '@/generated/prisma'
-import {
-  type ICreateUser,
-  type IUserRepositoryContract,
-} from '../contracts/user-repository-contract'
+import type { User } from '@/generated/prisma'
 import { prisma } from '@/lib/prisma'
+import type {
+  ICreateUser,
+  IUserRepositoryContract,
+} from '../contracts/user-repository-contract'
 
 export class UserRepository implements IUserRepositoryContract {
   public async findByEmail(email: string): Promise<User | null> {
@@ -16,12 +16,24 @@ export class UserRepository implements IUserRepositoryContract {
     return user
   }
 
-  public async create({ name, email, password }: ICreateUser): Promise<User> {
+  public async create({
+    name,
+    email,
+    password,
+    organization,
+  }: ICreateUser): Promise<User> {
     const user = await prisma.user.create({
       data: {
         name,
         email,
         passwordHash: password,
+        member_on: organization
+          ? {
+              create: {
+                organizationId: organization.id,
+              },
+            }
+          : undefined,
       },
     })
 
