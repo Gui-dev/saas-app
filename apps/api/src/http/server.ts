@@ -14,6 +14,8 @@ import { createAccount } from '@/modules/users/route/auth/create-account'
 import { authenticateWithPassword } from '@/modules/users/route/auth/authenticate-with-password'
 import { getProfile } from '@/modules/users/route/auth/get-profile'
 import { errorHandler } from './error-handler'
+import { requestPasswordRecover } from '@/modules/users/route/auth/request-password-recover'
+import { resetPassword } from '@/modules/users/route/auth/reset-password'
 
 const app = fastify({
   logger: {
@@ -54,5 +56,7 @@ app.register(fastifySwaggerUI, {
 app.register(createAccount)
 app.register(authenticateWithPassword)
 app.register(getProfile)
+app.register(requestPasswordRecover)
+app.register(resetPassword)
 
 export { app }
