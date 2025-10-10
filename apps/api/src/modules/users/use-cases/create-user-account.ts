@@ -12,7 +12,7 @@ interface ICreateUserAccountResponse {
   id: string
 }
 
-export class CreateUserAccount {
+export class CreateUserAccountUseCase {
   constructor(
     private userRepository: IUserRepositoryContract,
     private organizationRepository: IOrganizationRepositoryContract

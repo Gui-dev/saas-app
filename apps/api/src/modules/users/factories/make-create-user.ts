@@ -1,7 +1,7 @@
 import { OrganizationRepository } from '@/modules/organization/repositories/organization-repository'
 import type { ICreateUser } from '../contracts/user-repository-contract'
 import { UserRepository } from '../repositories/user-repository'
-import { CreateUserAccount } from '../use-cases/create-user-account'
+import { CreateUserAccountUseCase } from '../use-cases/create-user-account'
 
 export const makeCreateUser = async ({
   name,
@@ -10,7 +10,7 @@ export const makeCreateUser = async ({
 }: Omit<ICreateUser, 'organization'>) => {
   const userRepository = new UserRepository()
   const organizationRepository = new OrganizationRepository()
-  const createUserAccount = new CreateUserAccount(
+  const createUserAccount = new CreateUserAccountUseCase(
     userRepository,
     organizationRepository
   )

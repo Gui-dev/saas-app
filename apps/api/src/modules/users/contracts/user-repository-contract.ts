@@ -9,7 +9,7 @@ export interface ICreateUser {
 
 export interface IUpdateUser {
   userId: string
-  data: Partial<User>
+  data: Partial<Omit<User, 'id'>>
 }
 
 export type FindByIdResponse = Prisma.UserGetPayload<{
@@ -20,5 +20,5 @@ export interface IUserRepositoryContract {
   findById(id: string): Promise<FindByIdResponse | null>
   findByEmail(email: string): Promise<User | null>
   create(data: ICreateUser): Promise<User>
-  update(data: IUpdateUser): Promise<User>
+  update(data: IUpdateUser): Promise<User | null>
 }
