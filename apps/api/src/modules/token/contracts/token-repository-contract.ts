@@ -6,5 +6,6 @@ export interface ICreateToken {
 }
 
 export interface ITokenRepositoryContract {
+  findById(tokenId: string): Promise<Token | null>
   create: (data: ICreateToken) => Promise<Token>
 }
