@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import type {
   FindByIdResponse,
   ICreateUser,
+  IUpdateUser,
   IUserRepositoryContract,
 } from '../contracts/user-repository-contract'
 
@@ -51,6 +52,17 @@ export class UserRepository implements IUserRepositoryContract {
             }
           : undefined,
       },
+    })
+
+    return user
+  }
+
+  public async update({ userId, data }: IUpdateUser): Promise<User> {
+    const user = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data,
     })
 
     return user
