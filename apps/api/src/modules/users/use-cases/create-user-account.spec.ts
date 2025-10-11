@@ -33,4 +33,23 @@ describe('Create User Account', () => {
     expect(id).toEqual(expect.any(String))
     expect(userRepository.getItems()).toHaveLength(1)
   })
+
+  it('should not be able to create a user with a duplicated email', async () => {
+    const { id } = await sut.execute({
+      name: 'Bruce Wayne',
+      email: 'bruce@email.com',
+      password: '123456',
+    })
+
+    expect(id).toEqual(expect.any(String))
+    expect(userRepository.getItems()).toHaveLength(1)
+
+    await expect(() =>
+      sut.execute({
+        name: 'Bruce Wayne',
+        email: 'bruce@email.com',
+        password: '123456',
+      })
+    ).rejects.toBeInstanceOf(BadRequestError)
+  })
 })
