@@ -52,4 +52,24 @@ describe('Create User Account', () => {
       })
     ).rejects.toBeInstanceOf(BadRequestError)
   })
+
+  it('should be able to auto-join an organization if the email domain matches a registered organozation', async () => {
+    const { id } = await sut.execute({
+      name: 'Bruce Wayne',
+      email: 'bruce@edc.com',
+      password: '123456',
+    })
+
+    const organization = await organizationRepository.create({
+      ownerId: id,
+      name: 'DC Comics',
+      domain: 'dc.com',
+      slug: 'dc-comics',
+      avatarUrl: null,
+      shouldAttachUsersByDomain: true,
+    })
+
+    expect(userRepository.getItems()[0].id).toEqual(organization.ownerId)
+    expect(organization).toHaveProperty('id')
+  })
 })
