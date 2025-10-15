@@ -1,0 +1,19 @@
+{
+  "name": "@saas/env",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.ts",
+  "types": "index.ts",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@saas/typescript-config": "workspace:*",
+    "@types/node": "^24.6.2"
+  },
+  "dependencies": {
+    "@t3-oss/env-nextjs": "0.9.2",
+    "zod": "^4.1.11"
+  }
+}
