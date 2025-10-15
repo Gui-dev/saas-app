@@ -6,7 +6,10 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "pnpm env:load tsx watch src/index.ts",
+    "env:load": "dotenv -e ../../.env --",
+    "db:migrate": "pnpm env:load prisma migrate dev",
+    "db:studio": "pnpm env:load prisma studio",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
@@ -21,6 +24,7 @@
     "@fastify/swagger-ui": "^5.2.3",
     "@prisma/client": "6.16.3",
     "@saas/auth": "workspace:*",
+    "@saas/env": "workspace:*",
     "bcryptjs": "^3.0.2",
     "fastify": "^5.6.1",
     "fastify-plugin": "^5.1.0",
@@ -32,6 +36,7 @@
     "@saas/typescript-config": "workspace:*",
     "@types/node": "^24.6.2",
     "@vitest/coverage-v8": "^3.2.4",
+    "dotenv-cli": "^10.0.0",
     "pino-pretty": "^13.1.1",
     "prisma": "^6.16.3",
     "supertest": "^7.1.4",
