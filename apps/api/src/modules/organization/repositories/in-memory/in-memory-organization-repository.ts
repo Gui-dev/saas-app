@@ -1,5 +1,9 @@
 import { Organization } from '@/generated/prisma'
-import { IOrganizationRepositoryContract } from '../../contracts/organization-repository-contract'
+import {
+  ICreateOrganization,
+  IOrganizationRepositoryContract,
+} from '../../contracts/organization-repository-contract'
+import { randomUUID } from 'crypto'
 
 export class InMemoryOrganizationRepository
   implements IOrganizationRepositoryContract
@@ -7,6 +11,18 @@ export class InMemoryOrganizationRepository
   private items: Organization[] = []
 
   public async findByDomain(domain: string): Promise<Organization | null> {
+    const organization = this.items.find(item => item.domain === domain)
+
+    if (!organization) {
+      return null
+    }
+
+    return organization
+  }
+
+  public async findByDomainAndAttachUsersByDomain(
+    domain: string
+  ): Promise<Organization | null> {
     const organization = this.items.find(
       item => item.domain === domain && item.shouldAttachUsersByDomain
     )
@@ -14,6 +30,24 @@ export class InMemoryOrganizationRepository
     if (!organization) {
       return null
     }
+
+    return organization
+  }
+
+  public async create(data: ICreateOrganization): Promise<Organization> {
+    const organization = {
+      id: randomUUID(),
+      ownerId: data.ownerId,
+      name: data.name,
+      slug: data.slug,
+      domain: data.domain || '',
+      avatarUrl: data.avatarUrl || '',
+      shouldAttachUsersByDomain: data.shouldAttachUsersByDomain,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }
+
+    this.items.push(organization)
 
     return organization
   }
