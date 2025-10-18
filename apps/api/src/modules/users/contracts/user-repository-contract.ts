@@ -1,10 +1,11 @@
 import type { Organization, Prisma, User } from '@/generated/prisma'
 
 export interface ICreateUser {
-  name: string
+  name?: string
   email: string
-  password: string
-  organization: Organization | null
+  password?: string
+  avatarUrl?: string | null
+  organization?: Organization | null
 }
 
 export interface IUpdateUser {

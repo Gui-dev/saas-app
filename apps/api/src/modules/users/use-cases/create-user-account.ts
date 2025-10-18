@@ -6,10 +6,14 @@ import type {
 } from '../contracts/user-repository-contract'
 import { BadRequestError } from '@/http/_errors/bad-request-error'
 
-type CreateUserAccountProps = Omit<ICreateUser, 'organization'>
-
 interface ICreateUserAccountResponse {
   id: string
+}
+
+interface ICreateUserAccountRequest {
+  name: string
+  email: string
+  password: string
 }
 
 export class CreateUserAccountUseCase {
@@ -22,7 +26,7 @@ export class CreateUserAccountUseCase {
     name,
     email,
     password,
-  }: CreateUserAccountProps): Promise<ICreateUserAccountResponse> {
+  }: ICreateUserAccountRequest): Promise<ICreateUserAccountResponse> {
     const userAlreadyExists = await this.userRepository.findByEmail(email)
 
     if (userAlreadyExists) {
@@ -31,7 +35,9 @@ export class CreateUserAccountUseCase {
 
     const [_, domain] = email.split('@')
     const autoJoinOrganization =
-      await this.organizationRepository.findByDomain(domain)
+      await this.organizationRepository.findByDomainAndAttachUsersByDomain(
+        domain
+      )
 
     const passwordHashed = await hash(password, 6)
 

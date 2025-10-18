@@ -65,7 +65,7 @@ describe('Create User Account', () => {
       name: 'DC Comics',
       domain: 'dc.com',
       slug: 'dc-comics',
-      avatarUrl: null,
+      avatarUrl: '',
       shouldAttachUsersByDomain: true,
     })
 

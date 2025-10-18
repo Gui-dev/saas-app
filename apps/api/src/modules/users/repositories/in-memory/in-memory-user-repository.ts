@@ -8,8 +8,13 @@ import {
   IUserRepositoryContract,
 } from '../../contracts/user-repository-contract'
 
+type FullUser = User & {
+  passwordHash: string
+  member_on?: { organizationId: string; role: 'MEMBER' }[] // Simula a relação many-to-many
+}
+
 export class InMemoryUserRepository implements IUserRepositoryContract {
-  private items: User[] = []
+  private items: FullUser[] = []
 
   public async findById(id: string): Promise<FindByIdResponse | null> {
     const user = this.items.find(item => item.id === id)
@@ -42,14 +47,17 @@ export class InMemoryUserRepository implements IUserRepositoryContract {
     password,
     organization,
   }: ICreateUser): Promise<User> {
-    const newUser: User = {
+    const newUser: FullUser = {
       id: randomUUID(),
-      name,
-      email,
-      passwordHash: password,
-      avatarUrl: null,
+      name: name ?? '',
+      email: email,
+      passwordHash: password ?? '',
       createdAt: new Date(),
       updatedAt: new Date(),
+      avatarUrl: '',
+      member_on: organization
+        ? [{ organizationId: organization.id, role: 'MEMBER' }]
+        : [],
     }
 
     this.items.push(newUser)
@@ -60,16 +68,18 @@ export class InMemoryUserRepository implements IUserRepositoryContract {
   public async update({ userId, data }: IUpdateUser): Promise<User | null> {
     const userIndex = this.items.findIndex(user => user.id === userId)
 
-    if (!userIndex) {
-      null
+    if (userIndex === -1) {
+      return null
     }
 
     const existingUser = this.items[userIndex]
 
-    const updatedUser: User = {
+    const updatedUser: FullUser = {
       ...existingUser,
       ...data,
-    }
+      updatedAt: new Date(),
+    } as FullUser
+
     this.items[userIndex] = updatedUser
 
     return updatedUser
@@ -79,7 +89,7 @@ export class InMemoryUserRepository implements IUserRepositoryContract {
     return this.items
   }
 
-  public setItems(items: User[]) {
+  public setItems(items: FullUser[]) {
     this.items = items
   }
 }
