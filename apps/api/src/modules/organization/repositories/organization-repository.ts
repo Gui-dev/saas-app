@@ -3,7 +3,9 @@ import { prisma } from '@/lib/prisma'
 import type {
   GetOrganizationsByUserIdResponse,
   ICreateOrganization,
+  IGetOrganizationByDomainAndNotOrganizationIdRequest,
   IOrganizationRepositoryContract,
+  IUpdateOrganization,
 } from '../contracts/organization-repository-contract'
 
 export class OrganizationRepository implements IOrganizationRepositoryContract {
@@ -60,6 +62,22 @@ export class OrganizationRepository implements IOrganizationRepositoryContract {
     return organization
   }
 
+  public async getOrganizationByDomainAndNotOrganizationId({
+    domain,
+    organizationId,
+  }: IGetOrganizationByDomainAndNotOrganizationIdRequest): Promise<Organization | null> {
+    const organization = await prisma.organization.findFirst({
+      where: {
+        domain,
+        id: {
+          not: organizationId,
+        },
+      },
+    })
+
+    return organization
+  }
+
   public async create(data: ICreateOrganization): Promise<Organization> {
     const organization = await prisma.organization.create({
       data: {
@@ -70,6 +88,30 @@ export class OrganizationRepository implements IOrganizationRepositoryContract {
             role: 'ADMIN',
           },
         },
+      },
+    })
+
+    return organization
+  }
+
+  public async update({
+    organizationId,
+    data,
+  }: IUpdateOrganization): Promise<Organization> {
+    const organization = await prisma.organization.update({
+      where: {
+        id: organizationId,
+      },
+      data,
+    })
+
+    return organization
+  }
+
+  public async delete(organizationId: string): Promise<Organization | null> {
+    const organization = await prisma.organization.delete({
+      where: {
+        id: organizationId,
       },
     })
 
