@@ -22,6 +22,9 @@ import { createOrganization } from '@/modules/organization/routes/create-organiz
 import { getMembership } from '@/modules/organization/routes/get-membership'
 import { getOrganization } from '@/modules/organization/routes/get-organization'
 import { getOrganizations } from '@/modules/organization/routes/get-organizations'
+import { updateOrganization } from '@/modules/organization/routes/update-organization'
+import { shutdownOrganization } from '@/modules/organization/routes/shutdown-organization'
+import { transferOrganization } from '@/modules/organization/routes/transfer-organization'
 
 const app = fastify({
   logger: {
@@ -59,11 +62,6 @@ app.register(fastifySwagger, {
         },
       },
     },
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
   },
   transform: jsonSchemaTransform,
 })
@@ -82,5 +80,8 @@ app.register(createOrganization)
 app.register(getMembership)
 app.register(getOrganization)
 app.register(getOrganizations)
+app.register(updateOrganization)
+app.register(shutdownOrganization)
+app.register(transferOrganization)
 
 export { app }

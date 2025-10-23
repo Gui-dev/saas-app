@@ -14,7 +14,9 @@ export const makeAuthenticateWithPassword = async ({
   const authenticateWithPassword = new AuthenticateWithPasswordUseCase(
     userRepository
   )
-  const user = await authenticateWithPassword.execute({ email, password })
+  const { id } = await authenticateWithPassword.execute({ email, password })
 
-  return { user }
+  return {
+    userId: id,
+  }
 }

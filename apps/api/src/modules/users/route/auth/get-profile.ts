@@ -14,6 +14,7 @@ export const getProfile = (app: FastifyInstance) => {
         schema: {
           summary: 'Get user profile',
           tags: ['Users'],
+          security: [{ bearerAuth: [] }],
           response: {
             200: z.object({
               user: z.object({
@@ -28,6 +29,7 @@ export const getProfile = (app: FastifyInstance) => {
       },
       async (request, reply) => {
         const userId = await request.getCurrentUserId()
+        console.log('USER ID', userId)
         const { user } = await makeGetProfile({ id: userId })
 
         return reply.status(200).send({ user })

@@ -24,10 +24,10 @@ export const authenticateWithPassword = (app: FastifyInstance) => {
     async (request, reply) => {
       const { email, password } = request.body
 
-      const { user } = await makeAuthenticateWithPassword({ email, password })
+      const { userId } = await makeAuthenticateWithPassword({ email, password })
       const token = await reply.jwtSign(
         {
-          sub: user.id,
+          sub: userId,
         },
         {
           sign: {
