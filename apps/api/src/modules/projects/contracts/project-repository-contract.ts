@@ -64,6 +64,12 @@ export interface IDeleteProject {
   projectId: string
 }
 
+export interface IUpdateProject {
+  projectId: string
+  ownerId: string
+  data: Partial<Omit<Project, 'id' | 'organizationId' | 'slug'>>
+}
+
 export interface IProjectRepositoryContract {
   findByProjectIdAndOrganizationId(
     data: IFindByProjectIdAndOrganizationId
@@ -76,4 +82,5 @@ export interface IProjectRepositoryContract {
   ): Promise<IFindAllProjectsByOrganizationIdResponse[]>
   create(data: ICreateProject): Promise<Project>
   delete(data: IDeleteProject): Promise<void>
+  update(data: IUpdateProject): Promise<Project>
 }

@@ -7,6 +7,7 @@ import {
   IFindByProjectSlugAndOrganizationId,
   IGetProjectBySlugAndOrganizationIdResponse,
   IProjectRepositoryContract,
+  IUpdateProject,
 } from '../contracts/project-repository-contract'
 import { prisma } from '@/lib/prisma'
 import { createSlug } from '@/utils/create-slug'
@@ -116,5 +117,21 @@ export class ProjectRepository implements IProjectRepositoryContract {
         ownerId,
       },
     })
+  }
+
+  public async update({
+    projectId,
+    ownerId,
+    data,
+  }: IUpdateProject): Promise<Project> {
+    const project = await prisma.project.update({
+      where: {
+        id: projectId,
+        ownerId,
+      },
+      data,
+    })
+
+    return project
   }
 }
