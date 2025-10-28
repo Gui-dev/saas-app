@@ -29,6 +29,7 @@ import { createProject } from '@/modules/projects/routes/create-project'
 import { deleteProject } from '@/modules/projects/routes/delete-project'
 import { getProject } from '@/modules/projects/routes/get-project'
 import { getProjects } from '@/modules/projects/routes/get-projects'
+import { updateProject } from '@/modules/projects/routes/update-project'
 
 const app = fastify({
   logger: {
@@ -91,5 +92,6 @@ app.register(createProject)
 app.register(deleteProject)
 app.register(getProject)
 app.register(getProjects)
+app.register(updateProject)
 
 export { app }
