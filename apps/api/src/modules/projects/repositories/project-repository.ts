@@ -2,6 +2,7 @@ import { Project } from '@/generated/prisma'
 import {
   ICreateProject,
   IDeleteProject,
+  IFindAllProjectsByOrganizationIdResponse,
   IFindByProjectIdAndOrganizationId,
   IFindByProjectSlugAndOrganizationId,
   IGetProjectBySlugAndOrganizationIdResponse,
@@ -53,6 +54,39 @@ export class ProjectRepository implements IProjectRepositoryContract {
     })
 
     return project
+  }
+
+  public async findAllProjectsByOrganizationId(
+    organizationId: string
+  ): Promise<IFindAllProjectsByOrganizationIdResponse[]> {
+    const projects = await prisma.project.findMany({
+      where: {
+        organizationId,
+      },
+      select: {
+        id: true,
+        ownerId: true,
+        organizationId: true,
+        name: true,
+        description: true,
+        slug: true,
+        avatarUrl: true,
+        createdAt: true,
+        owner: {
+          select: {
+            id: true,
+            name: true,
+            avatarUrl: true,
+          },
+        },
+      },
+
+      orderBy: {
+        createdAt: 'desc',
+      },
+    })
+
+    return projects
   }
 
   public async create({

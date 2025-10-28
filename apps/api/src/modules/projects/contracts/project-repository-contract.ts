@@ -30,6 +30,27 @@ export type IGetProjectBySlugAndOrganizationIdResponse =
     }
   }>
 
+export type IFindAllProjectsByOrganizationIdResponse =
+  Prisma.ProjectGetPayload<{
+    select: {
+      id: true
+      ownerId: true
+      organizationId: true
+      name: true
+      description: true
+      slug: true
+      avatarUrl: true
+      createdAt: true
+      owner: {
+        select: {
+          id: true
+          name: true
+          avatarUrl: true
+        }
+      }
+    }
+  }>
+
 export interface ICreateProject {
   userId: string
   organizationId: string
@@ -50,6 +71,9 @@ export interface IProjectRepositoryContract {
   findByProjectSlugAndOrganizationId(
     data: IFindByProjectSlugAndOrganizationId
   ): Promise<IGetProjectBySlugAndOrganizationIdResponse | null>
+  findAllProjectsByOrganizationId(
+    organizationId: string
+  ): Promise<IFindAllProjectsByOrganizationIdResponse[]>
   create(data: ICreateProject): Promise<Project>
   delete(data: IDeleteProject): Promise<void>
 }
