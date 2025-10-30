@@ -13,11 +13,11 @@ export const updateProject = async (app: FastifyInstance) => {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
-    .delete(
+    .put(
       '/organizations/:slug/projects/:projectId',
       {
         schema: {
-          summary: 'Delete a project',
+          summary: 'Update a project',
           tags: ['Projects'],
           security: [{ bearerAuth: [] }],
           params: z.object({

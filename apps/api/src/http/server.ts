@@ -30,6 +30,9 @@ import { deleteProject } from '@/modules/projects/routes/delete-project'
 import { getProject } from '@/modules/projects/routes/get-project'
 import { getProjects } from '@/modules/projects/routes/get-projects'
 import { updateProject } from '@/modules/projects/routes/update-project'
+import { getMembers } from '@/modules/members/routes/get-members'
+import { updateMember } from '@/modules/members/routes/update-member'
+import { removeMember } from '@/modules/members/routes/remove-member'
 
 const app = fastify({
   logger: {
@@ -81,6 +84,7 @@ app.register(authenticateWithGithub)
 app.register(getProfile)
 app.register(requestPasswordRecover)
 app.register(resetPassword)
+
 app.register(createOrganization)
 app.register(getMembership)
 app.register(getOrganization)
@@ -88,10 +92,15 @@ app.register(getOrganizations)
 app.register(updateOrganization)
 app.register(shutdownOrganization)
 app.register(transferOrganization)
+
 app.register(createProject)
 app.register(deleteProject)
 app.register(getProject)
 app.register(getProjects)
 app.register(updateProject)
+
+app.register(getMembers)
+app.register(updateMember)
+app.register(removeMember)
 
 export { app }
