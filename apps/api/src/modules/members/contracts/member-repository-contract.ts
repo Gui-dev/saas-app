@@ -37,6 +37,27 @@ export type IFindByOrganizationIdResponse = Prisma.MemberGetPayload<{
   }
 }>
 
+export interface IFindByOrganizationIdAndUserEmail {
+  organizationId: string
+  email: string
+}
+
+export type IFindByOrganizationIdAndUserEmailResponse =
+  Prisma.MemberGetPayload<{
+    select: {
+      id: true
+      role: true
+      user: {
+        select: {
+          id: true
+          name: true
+          email: true
+          avatarUrl: true
+        }
+      }
+    }
+  }>
+
 export interface IDeleteRequest {
   memberId: string
   organizationId: string
@@ -52,6 +73,9 @@ export interface IMemberRepositoryContract {
   findByOrganizationId(
     organizationId: string
   ): Promise<IFindByOrganizationIdResponse[]>
+  findByOrganizationIdAndUserEmail(
+    data: IFindByOrganizationIdAndUserEmail
+  ): Promise<IFindByOrganizationIdAndUserEmailResponse | null>
   updateByUserId(data: IUpdateMemberByUserId): Promise<Member>
   updateByMemberId(data: IUpdateMemberByMemberId): Promise<Member>
   delete(data: IDeleteRequest): Promise<void>

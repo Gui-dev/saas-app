@@ -2,6 +2,8 @@ import { Member } from '@/generated/prisma'
 import {
   IDeleteRequest,
   IFindByMemberIdAndOrganizationId,
+  IFindByOrganizationIdAndUserEmail,
+  IFindByOrganizationIdAndUserEmailResponse,
   IFindByOrganizationIdAndUserId,
   IFindByOrganizationIdResponse,
   IMemberRepositoryContract,
@@ -35,6 +37,37 @@ export class MemberRepository implements IMemberRepositoryContract {
           organizationId,
           userId,
         },
+      },
+    })
+
+    return member
+  }
+
+  public async findByOrganizationIdAndUserEmail({
+    organizationId,
+    email,
+  }: IFindByOrganizationIdAndUserEmail): Promise<IFindByOrganizationIdAndUserEmailResponse | null> {
+    const member = await prisma.member.findFirst({
+      where: {
+        organizationId,
+        user: {
+          email,
+        },
+      },
+      select: {
+        id: true,
+        role: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            avatarUrl: true,
+          },
+        },
+      },
+      orderBy: {
+        role: 'asc',
       },
     })
 
