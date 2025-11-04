@@ -40,7 +40,7 @@ export type IFindByOrganizationIdResponse = Prisma.InviteGetPayload<{
       }
     }
   }
-}>[]
+}>
 
 export interface ICreateInvite {
   organizationId: string
