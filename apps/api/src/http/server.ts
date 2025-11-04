@@ -35,6 +35,7 @@ import { updateMember } from '@/modules/members/routes/update-member'
 import { removeMember } from '@/modules/members/routes/remove-member'
 import { createInvite } from '@/modules/invites/routes/create-invite'
 import { getInvite } from '@/modules/invites/routes/get-invite'
+import { acceptInvite } from '@/modules/invites/routes/accept-invite'
 
 const app = fastify({
   logger: {
@@ -107,5 +108,6 @@ app.register(removeMember)
 
 app.register(createInvite)
 app.register(getInvite)
+app.register(acceptInvite)
 
 export { app }
