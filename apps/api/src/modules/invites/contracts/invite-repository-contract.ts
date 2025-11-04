@@ -49,6 +49,13 @@ export interface ICreateInvite {
   role: 'ADMIN' | 'MEMBER' | 'BILLING'
 }
 
+export interface IAcceptInviteRequest {
+  inviteId: string
+  userId: string
+  organizationId: string
+  role: 'ADMIN' | 'MEMBER' | 'BILLING'
+}
+
 export interface IInviteRepositoryContract {
   findByInviteId(inviteId: string): Promise<IFindByInviteIdResponse | null>
   findByEmailAndOrganizationId(
@@ -58,4 +65,5 @@ export interface IInviteRepositoryContract {
     organizationId: string
   ): Promise<IFindByOrganizationIdResponse[]>
   create(data: ICreateInvite): Promise<Invite>
+  acceptInvite(data: IAcceptInviteRequest): Promise<void>
 }

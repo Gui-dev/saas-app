@@ -1,5 +1,6 @@
 import { Invite } from '@/generated/prisma'
 import {
+  IAcceptInviteRequest,
   ICreateInvite,
   IFindByEmailAndOrganizationIdRequest,
   IFindByInviteIdResponse,
@@ -98,5 +99,27 @@ export class InviteRepository implements IInviteRepositoryContract {
     })
 
     return invite
+  }
+
+  public async acceptInvite({
+    inviteId,
+    userId,
+    organizationId,
+    role,
+  }: IAcceptInviteRequest): Promise<void> {
+    await prisma.$transaction([
+      prisma.member.create({
+        data: {
+          userId,
+          organizationId,
+          role,
+        },
+      }),
+      prisma.invite.delete({
+        where: {
+          id: inviteId,
+        },
+      }),
+    ])
   }
 }
