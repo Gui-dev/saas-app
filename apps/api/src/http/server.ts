@@ -37,6 +37,7 @@ import { createInvite } from '@/modules/invites/routes/create-invite'
 import { getInvite } from '@/modules/invites/routes/get-invite'
 import { acceptInvite } from '@/modules/invites/routes/accept-invite'
 import { rejectInvite } from '@/modules/invites/routes/reject-invite'
+import { revokeInvite } from '@/modules/invites/routes/revoke-inivte'
 
 const app = fastify({
   logger: {
@@ -111,5 +112,6 @@ app.register(createInvite)
 app.register(getInvite)
 app.register(acceptInvite)
 app.register(rejectInvite)
+app.register(revokeInvite)
 
 export { app }
