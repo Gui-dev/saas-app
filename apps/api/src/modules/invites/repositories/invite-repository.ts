@@ -122,4 +122,12 @@ export class InviteRepository implements IInviteRepositoryContract {
       }),
     ])
   }
+
+  public async delete(inviteId: string): Promise<void> {
+    await prisma.invite.delete({
+      where: {
+        id: inviteId,
+      },
+    })
+  }
 }

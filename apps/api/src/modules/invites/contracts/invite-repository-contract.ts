@@ -66,4 +66,5 @@ export interface IInviteRepositoryContract {
   ): Promise<IFindByOrganizationIdResponse[]>
   create(data: ICreateInvite): Promise<Invite>
   acceptInvite(data: IAcceptInviteRequest): Promise<void>
+  delete(inviteId: string): Promise<void>
 }
