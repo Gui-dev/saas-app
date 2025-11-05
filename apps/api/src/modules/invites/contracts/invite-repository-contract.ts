@@ -42,6 +42,28 @@ export type IFindByOrganizationIdResponse = Prisma.InviteGetPayload<{
   }
 }>
 
+export type IFindByUserEmailResponse = Prisma.InviteGetPayload<{
+  select: {
+    id: true
+    email: true
+    role: true
+    createdAt: true
+    author: {
+      select: {
+        id: true
+        name: true
+        avatarUrl: true
+      }
+    }
+    organization: {
+      select: {
+        id: true
+        name: true
+      }
+    }
+  }
+}>
+
 export interface ICreateInvite {
   organizationId: string
   authorId: string
@@ -64,6 +86,7 @@ export interface IInviteRepositoryContract {
   findByOrganizationId(
     organizationId: string
   ): Promise<IFindByOrganizationIdResponse[]>
+  findByUserEmail(email: string): Promise<IFindByUserEmailResponse[]>
   create(data: ICreateInvite): Promise<Invite>
   acceptInvite(data: IAcceptInviteRequest): Promise<void>
   delete(inviteId: string): Promise<void>

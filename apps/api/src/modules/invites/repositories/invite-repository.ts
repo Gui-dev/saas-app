@@ -5,6 +5,7 @@ import {
   IFindByEmailAndOrganizationIdRequest,
   IFindByInviteIdResponse,
   IFindByOrganizationIdResponse,
+  IFindByUserEmailResponse,
   IInviteRepositoryContract,
 } from '../contracts/invite-repository-contract'
 import { prisma } from '@/lib/prisma'
@@ -77,6 +78,37 @@ export class InviteRepository implements IInviteRepositoryContract {
       },
       orderBy: {
         createdAt: 'desc',
+      },
+    })
+
+    return invites
+  }
+
+  public async findByUserEmail(
+    email: string
+  ): Promise<IFindByUserEmailResponse[]> {
+    const invites = await prisma.invite.findMany({
+      where: {
+        email,
+      },
+      select: {
+        id: true,
+        email: true,
+        role: true,
+        createdAt: true,
+        author: {
+          select: {
+            id: true,
+            name: true,
+            avatarUrl: true,
+          },
+        },
+        organization: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     })
 
