@@ -150,4 +150,13 @@ export class MemberRepository implements IMemberRepositoryContract {
       },
     })
   }
+
+  public async count(organizationId: string): Promise<number> {
+    return await prisma.member.count({
+      where: {
+        organizationId,
+        role: { not: 'BILLING' },
+      },
+    })
+  }
 }

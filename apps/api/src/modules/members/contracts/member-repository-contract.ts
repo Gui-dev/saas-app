@@ -79,4 +79,5 @@ export interface IMemberRepositoryContract {
   updateByUserId(data: IUpdateMemberByUserId): Promise<Member>
   updateByMemberId(data: IUpdateMemberByMemberId): Promise<Member>
   delete(data: IDeleteRequest): Promise<void>
+  count(organizationId: string): Promise<number>
 }
