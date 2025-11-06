@@ -9,6 +9,7 @@ export interface ICreateUser {
 }
 
 export interface IUpdateUser {
+  code: string
   userId: string
   data: Partial<Omit<User, 'id'>>
 }

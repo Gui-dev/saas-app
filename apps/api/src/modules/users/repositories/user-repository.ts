@@ -57,13 +57,20 @@ export class UserRepository implements IUserRepositoryContract {
     return user
   }
 
-  public async update({ userId, data }: IUpdateUser): Promise<User> {
-    const user = await prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data,
-    })
+  public async update({ code, userId, data }: IUpdateUser): Promise<User> {
+    const [user] = await prisma.$transaction([
+      prisma.user.update({
+        where: {
+          id: userId,
+        },
+        data,
+      }),
+      prisma.token.delete({
+        where: {
+          id: code,
+        },
+      }),
+    ])
 
     return user
   }

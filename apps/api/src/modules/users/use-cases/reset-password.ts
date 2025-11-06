@@ -27,6 +27,7 @@ export class ResetPasswordUseCase {
     const passwordHash = await hash(password, 6)
 
     await this.usersRepository.update({
+      code,
       userId: token.userId,
       data: {
         passwordHash,
