@@ -39,6 +39,7 @@ import { acceptInvite } from '@/modules/invites/routes/accept-invite'
 import { rejectInvite } from '@/modules/invites/routes/reject-invite'
 import { revokeInvite } from '@/modules/invites/routes/revoke-inivte'
 import { getPendingInvites } from '@/modules/invites/routes/get-pending-invites'
+import { getOrganizationBilling } from '@/modules/billing/routes/get-organization-billing'
 
 const app = fastify({
   logger: {
@@ -115,5 +116,7 @@ app.register(acceptInvite)
 app.register(rejectInvite)
 app.register(revokeInvite)
 app.register(getPendingInvites)
+
+app.register(getOrganizationBilling)
 
 export { app }
