@@ -83,4 +83,5 @@ export interface IProjectRepositoryContract {
   create(data: ICreateProject): Promise<Project>
   delete(data: IDeleteProject): Promise<void>
   update(data: IUpdateProject): Promise<Project>
+  count(organizationId: string): Promise<number>
 }

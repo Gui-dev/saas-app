@@ -134,4 +134,12 @@ export class ProjectRepository implements IProjectRepositoryContract {
 
     return project
   }
+
+  public async count(organizationId: string): Promise<number> {
+    return await prisma.project.count({
+      where: {
+        organizationId,
+      },
+    })
+  }
 }
