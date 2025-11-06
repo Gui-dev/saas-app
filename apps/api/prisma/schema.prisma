@@ -36,7 +36,7 @@ model Token {
   type      TOKEN_TYPE
   createdAt DateTime   @default(now()) @map("created_at")
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("tokens")
 }
@@ -51,7 +51,7 @@ model Account {
   providerAccountId String           @unique @map("provider_account_id")
   provider          ACCOUNT_PROVIDER
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, userId])
   @@map("accounts")
@@ -71,8 +71,8 @@ model Invite {
   email          String
   createdAt      DateTime @default(now()) @map("created_at")
 
-  author       User?        @relation(fields: [authorId], references: [id])
-  organization Organization @relation(fields: [organizationId], references: [id])
+  author       User?        @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@unique([email, organizationId])
   @@index([email])
@@ -85,8 +85,8 @@ model Member {
   organizationId String @map("organization_id")
   role           ROLE   @default(MEMBER)
 
-  organization Organization @relation(fields: [organizationId], references: [id])
-  user         User         @relation(fields: [userId], references: [id])
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, organizationId])
   @@map("members")
@@ -123,7 +123,7 @@ model Project {
   updatedAt      DateTime @updatedAt @map("updated_at")
 
   owner        User         @relation(fields: [ownerId], references: [id])
-  organization Organization @relation(fields: [organizationId], references: [id])
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@map("projects")
 }
