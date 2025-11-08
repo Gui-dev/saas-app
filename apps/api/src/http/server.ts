@@ -1,6 +1,6 @@
 import fastifyCors from '@fastify/cors'
 import fastifySwagger from '@fastify/swagger'
-import fastifySwaggerUI from '@fastify/swagger-ui'
+// import fastifySwaggerUI from '@fastify/swagger-ui'
 import { fastify } from 'fastify'
 import {
   jsonSchemaTransform,
@@ -9,6 +9,7 @@ import {
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 import fastifyJWT from '@fastify/jwt'
+import ScalarAPIReference from '@scalar/fastify-api-reference'
 
 import { createAccount } from '@/modules/users/route/auth/create-account'
 import { authenticateWithPassword } from '@/modules/users/route/auth/authenticate-with-password'
@@ -81,7 +82,7 @@ app.register(fastifySwagger, {
   transform: jsonSchemaTransform,
 })
 
-app.register(fastifySwaggerUI, {
+app.register(ScalarAPIReference, {
   routePrefix: '/docs',
 })
 
