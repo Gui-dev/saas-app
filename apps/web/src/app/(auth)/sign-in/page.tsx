@@ -6,10 +6,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import githubIcon from '@/assets/github-icon.svg'
+import { signInWithEmailAndPassword } from './actions'
 
 const SignIn = () => {
   return (
-    <form className="space-y-4">
+    <form action={signInWithEmailAndPassword} className="space-y-4">
       <div className="space-y-1">
         <Label htmlFor="email">Email</Label>
         <Input
@@ -39,6 +40,10 @@ const SignIn = () => {
       <Button type="submit" className="w-full">
         Entrar
       </Button>
+      <Button className="w-full cursor-pointer" variant="link" asChild>
+        <Link href="/sign-up">Não tem uma conta? Crie uma.</Link>
+      </Button>
+
       <Separator />
       <Button
         type="submit"
