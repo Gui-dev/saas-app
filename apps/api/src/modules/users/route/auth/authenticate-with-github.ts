@@ -23,6 +23,7 @@ export const authenticateWithGithub = (app: FastifyInstance) => {
     },
     async (request, reply) => {
       const { code } = request.body
+
       const githubOAuthURL = new URL(
         'https://github.com/login/oauth/access_token'
       )
@@ -32,11 +33,11 @@ export const authenticateWithGithub = (app: FastifyInstance) => {
         'client_secret',
         env.GITHUB_OAUTH_CLIENT_SECRET
       )
-      githubOAuthURL.searchParams.set('code', code)
       githubOAuthURL.searchParams.set(
         'redirect_uri',
         env.GITHUB_OAUTH_REDIRECT_URI
       )
+      githubOAuthURL.searchParams.set('code', code)
 
       const githubAccessTokenResponse = await fetch(githubOAuthURL, {
         method: 'POST',
@@ -60,6 +61,8 @@ export const authenticateWithGithub = (app: FastifyInstance) => {
         },
       })
 
+      const githubUserData = await githubUserResponse.json()
+
       const {
         id: githubId,
         avatar_url,
@@ -68,11 +71,11 @@ export const authenticateWithGithub = (app: FastifyInstance) => {
       } = z
         .object({
           id: z.number().int().transform(String),
-          name: z.string().nullable(),
+          name: z.string().optional(),
           email: z.string().email().nullable(),
           avatar_url: z.string().url(),
         })
-        .parse(githubUserResponse)
+        .parse(githubUserData)
 
       const { userId } = await makeAuthenticateWithGithub({
         githubId,

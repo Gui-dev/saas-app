@@ -4,7 +4,7 @@ import { IAccountRepositoryContract } from '@/modules/accounts/contracts/account
 
 export interface IAuthenticateWithGithubRequest {
   githubId: string
-  name: string | null
+  name: string | undefined
   email: string | null
   avatar_url: string | null
 }
@@ -22,7 +22,7 @@ export class AuthenticateWithGithubUseCase {
     avatar_url,
   }: IAuthenticateWithGithubRequest) {
     if (!email) {
-      throw new BadRequestError('YOur Github account does not have an email')
+      throw new BadRequestError('Your Github account does not have an email')
     }
 
     let user = await this.userRepository.findByEmail(email)
