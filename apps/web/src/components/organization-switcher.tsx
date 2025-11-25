@@ -11,18 +11,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-import { cookies } from 'next/headers'
+
+import { getCurrentOrganization } from '@/auth/auth'
 
 export const OrganizationSwitcher = async () => {
-  const cookieStore = await cookies()
-  const currentOrg = cookieStore.get('org')
+  const currentOrg = await getCurrentOrganization()
   const { organizations } = await getOrganizations()
 
   const currentOrganization = organizations.find(
-    organization => organization.slug === currentOrg?.value
+    organization => organization.slug === currentOrg
   )
-
-  console.log('currentOrganization: ', currentOrganization)
 
   return (
     <DropdownMenu>
