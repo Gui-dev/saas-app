@@ -2,9 +2,11 @@ import { Header } from '@/components/header'
 
 const OrganizationDetails = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="py-4 space-y-4">
       <Header />
-      <h1>DETAILS</h1>
+      <main className="mx-auto w-full max-w-[1200px] space-y-4">
+        <h1 className="text-2xl font-bold">DETAILS</h1>
+      </main>
     </div>
   )
 }
