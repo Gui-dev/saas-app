@@ -39,7 +39,7 @@ export const OrganizationForm = () => {
         </Alert>
       )}
 
-      <div className="space-y-1">
+      <div className="space-y-2">
         <Label htmlFor="name">Nome da organizacao</Label>
         <Input
           type="text"
@@ -54,7 +54,7 @@ export const OrganizationForm = () => {
         )}
       </div>
 
-      <div className="space-y-1">
+      <div className="space-y-2">
         <Label htmlFor="domain">Dominio do e-mail</Label>
         <Input
           type="text"
@@ -70,7 +70,7 @@ export const OrganizationForm = () => {
         )}
       </div>
 
-      <div className="space-y-1">
+      <div className="space-y-2">
         <div className="flex items-baseline space-x-2">
           <Checkbox
             name="shouldAttchUsersByDomain"
