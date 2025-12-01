@@ -6,6 +6,7 @@ import { ProfileButton } from './profile-button'
 import { ability } from '@/auth/auth'
 import { Separator } from './ui/separator'
 import { ThemeSwitcher } from './theme/theme-switcher'
+import { ProjectSwitcher } from './project-switcher'
 
 export const Header = async () => {
   const permissions = await ability()
@@ -23,7 +24,12 @@ export const Header = async () => {
         <Slash className="-rotate-[24deg] size-3 text-border" />
         <OrganizationSwitcher />
 
-        {permissions?.can('get', 'Project') && <p>Projetos</p>}
+        {permissions?.can('get', 'Project') && (
+          <>
+            <Slash className="-rotate-[24deg] size-3 text-border" />
+            <ProjectSwitcher />
+          </>
+        )}
       </div>
 
       <div className="flex items-center gap-4">

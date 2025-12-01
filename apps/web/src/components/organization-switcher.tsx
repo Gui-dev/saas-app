@@ -27,7 +27,7 @@ export const OrganizationSwitcher = async () => {
       <DropdownMenuTrigger className="flex w-[168px] cursor-pointer items-center gap-2 rounded p-1 font-medium text-sm outline-none focus-visible:ring-2 focus-visible:ring-primary">
         {currentOrganization && (
           <>
-            <Avatar className="mr-2 size-4">
+            <Avatar className="size-4">
               {currentOrganization.avatarUrl && (
                 <AvatarImage src={currentOrganization.avatarUrl} />
               )}
