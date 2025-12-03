@@ -57,13 +57,11 @@ export const createOrganizationAction = async (data: FormData) => {
 
   const { name, domain, shouldAttchUsersByDomain } = result.data
   try {
-    const { id } = await createOrganization({
+    await createOrganization({
       name,
       domain: String(domain),
       shouldAttchUsersByDomain,
     })
-
-    console.log('ID: ', id)
   } catch (error) {
     if (error instanceof HTTPError) {
       const { message } = await error.response.json()
@@ -80,7 +78,7 @@ export const createOrganizationAction = async (data: FormData) => {
     return {
       success: false,
       message:
-        'Ocorreu um erro ao tentar criar sua conta, tente novamente mais tarde',
+        'Ocorreu um erro ao tentar criar uma organização, tente novamente mais tarde',
       errors: null,
     }
   }
