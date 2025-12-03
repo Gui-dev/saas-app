@@ -50,7 +50,6 @@ export const createProject = async (app: FastifyInstance) => {
           organizationId: organization.id,
           name,
           description,
-          slug,
         })
 
         return reply.status(201).send({ projectId })

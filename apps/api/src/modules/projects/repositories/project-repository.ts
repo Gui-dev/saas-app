@@ -95,7 +95,6 @@ export class ProjectRepository implements IProjectRepositoryContract {
     organizationId,
     name,
     description,
-    slug,
   }: ICreateProject): Promise<Project> {
     const project = await prisma.project.create({
       data: {
@@ -103,7 +102,7 @@ export class ProjectRepository implements IProjectRepositoryContract {
         organizationId,
         name,
         description,
-        slug: createSlug(slug),
+        slug: createSlug(name),
       },
     })
 

@@ -6,7 +6,6 @@ export interface ICreateProjectUseCaseRequest {
   organizationId: string
   name: string
   description: string
-  slug: string
 }
 
 export class CreateProjectUseCase {
@@ -17,14 +16,12 @@ export class CreateProjectUseCase {
     organizationId,
     name,
     description,
-    slug,
   }: ICreateProjectUseCaseRequest) {
     const project = await this.projectRepository.create({
       userId,
       organizationId,
       name,
       description,
-      slug,
     })
 
     if (!project) {

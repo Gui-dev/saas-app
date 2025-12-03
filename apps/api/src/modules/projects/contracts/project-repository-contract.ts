@@ -56,7 +56,6 @@ export interface ICreateProject {
   organizationId: string
   name: string
   description: string
-  slug: string
 }
 
 export interface IDeleteProject {
