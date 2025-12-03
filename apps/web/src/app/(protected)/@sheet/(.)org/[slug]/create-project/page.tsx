@@ -1,20 +1,20 @@
 import { Sheet, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 
-import { OrganizationForm } from '../../create-organization/organization-form'
 import { InterceptedSheetContent } from '@/components/intercepted-sheet-content'
+import { ProjectForm } from '@/app/(protected)/org/[slug]/create-project/project-form'
 
-const CreateOrganization = () => {
+const CreateProject = () => {
   return (
     <Sheet defaultOpen>
       <InterceptedSheetContent className="p-4">
         <SheetHeader>
-          <SheetTitle>Criar organização</SheetTitle>
+          <SheetTitle>Criar projeto</SheetTitle>
         </SheetHeader>
 
-        <OrganizationForm />
+        <ProjectForm />
       </InterceptedSheetContent>
     </Sheet>
   )
 }
 
-export default CreateOrganization
+export default CreateProject
