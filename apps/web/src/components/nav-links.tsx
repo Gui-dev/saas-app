@@ -1,0 +1,14 @@
+'use client'
+
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { ComponentProps } from 'react'
+
+interface NavLinkProps extends ComponentProps<typeof Link> {}
+
+export const NavLink = (props: NavLinkProps) => {
+  const pathName = usePathname()
+  const isCurrent = props.href.toString() === pathName
+
+  return <Link data-current={isCurrent} {...props} />
+}
