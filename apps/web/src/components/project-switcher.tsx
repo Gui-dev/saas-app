@@ -19,14 +19,14 @@ import { getProjects } from '@/http/get-projects'
 import { Skeleton } from './ui/skeleton'
 
 export const ProjectSwitcher = () => {
-  const { slug, project: projectSlug } = useParams<{
+  const { slug: orgSlug, project: projectSlug } = useParams<{
     slug: string
     project: string
   }>()
   const { data, isLoading } = useQuery({
-    queryKey: ['projects'],
-    queryFn: () => getProjects(slug),
-    enabled: !!slug,
+    queryKey: [orgSlug, 'projects'],
+    queryFn: () => getProjects(orgSlug),
+    enabled: !!orgSlug,
   })
 
   const currentProject =
@@ -85,7 +85,7 @@ export const ProjectSwitcher = () => {
             data.projects.map(project => {
               return (
                 <DropdownMenuItem key={project.id} asChild>
-                  <Link href={`/org/${slug}/project/${project.slug}`}>
+                  <Link href={`/org/${orgSlug}/project/${project.slug}`}>
                     <Avatar className="mr-2 size-4">
                       {project.avatarUrl && (
                         <AvatarImage src={project.avatarUrl} />
@@ -100,7 +100,7 @@ export const ProjectSwitcher = () => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href={`/org/${slug}/create-project`}>
+          <Link href={`/org/${orgSlug}/create-project`}>
             <PlusCircle className="mr-2 size-4" />
             Nova organização
           </Link>

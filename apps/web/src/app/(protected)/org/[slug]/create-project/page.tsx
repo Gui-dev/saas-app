@@ -11,13 +11,10 @@ const CreateProject = async () => {
   }
 
   return (
-    <div className="py-4 space-y-4">
-      <Header />
-      <main className="mx-auto w-full max-w-[1200px] space-y-4">
-        <h1 className="text-2xl font-bold">Criar um novo projeto</h1>
+    <div className="space-y-4">
+      <h1 className="text-2xl font-bold">Criar um novo projeto</h1>
 
-        <ProjectForm />
-      </main>
+      <ProjectForm />
     </div>
   )
 }
