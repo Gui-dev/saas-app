@@ -3,7 +3,7 @@ import { api } from './api-client'
 export interface ICreateOrganizationRequest {
   name: string
   domain: string | null
-  shouldAttchUsersByDomain: boolean
+  shouldAttachUsersByDomain: boolean
 }
 
 export interface ICreateOrganizationResponse {
@@ -13,14 +13,14 @@ export interface ICreateOrganizationResponse {
 export const createOrganization = async ({
   name,
   domain,
-  shouldAttchUsersByDomain,
+  shouldAttachUsersByDomain,
 }: ICreateOrganizationRequest): Promise<ICreateOrganizationResponse> => {
   const result = await api
     .post('organizations', {
       json: {
         name,
         domain,
-        shouldAttchUsersByDomain,
+        shouldAttachUsersByDomain,
       },
     })
     .json<ICreateOrganizationResponse>()

@@ -18,7 +18,7 @@ export const createOrganization = async (app: FastifyInstance) => {
           body: z.object({
             name: z.string(),
             domain: z.string().optional(),
-            shouldAttchUsersByDomain: z.boolean().optional(),
+            shouldAttachUsersByDomain: z.boolean().default(false),
           }),
           response: {
             201: z.object({
@@ -29,13 +29,13 @@ export const createOrganization = async (app: FastifyInstance) => {
       },
       async (request, reply) => {
         const userId = await request.getCurrentUserId()
-        const { name, domain, shouldAttchUsersByDomain } = request.body
+        const { name, domain, shouldAttachUsersByDomain } = request.body
 
         const { organizationId } = await makeCreateOrganization({
           ownerId: userId,
           name,
           domain,
-          shouldAttachUsersByDomain: shouldAttchUsersByDomain ?? false,
+          shouldAttachUsersByDomain: shouldAttachUsersByDomain,
         })
 
         return reply.status(201).send({ organizationId })
