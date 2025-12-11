@@ -9,13 +9,23 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/use-form-state'
-import { createOrganizationAction } from './actions'
+import { createOrganizationAction, updateOrganizationAction } from './actions'
+import { IOrganizationSchema } from './organization-schema'
 
-export const OrganizationForm = () => {
-  const router = useRouter()
-  const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
-    createOrganizationAction
-  )
+interface IOrganizationFormProps {
+  isUpdating?: boolean
+  initialData?: IOrganizationSchema
+}
+
+export const OrganizationForm = ({
+  isUpdating = false,
+  initialData,
+}: IOrganizationFormProps) => {
+  const formAction = isUpdating
+    ? updateOrganizationAction
+    : createOrganizationAction
+  const [{ success, message, errors }, handleSubmit, isPending] =
+    useFormState(formAction)
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -46,6 +56,7 @@ export const OrganizationForm = () => {
           name="name"
           id="name"
           placeholder="Digite seu nome"
+          defaultValue={initialData?.name}
         />
         {errors?.name && (
           <p className="text-xs font-medium text-red-500 dark:text-red-400">
@@ -62,6 +73,7 @@ export const OrganizationForm = () => {
           id="domain"
           inputMode="url"
           placeholder="Digite o dominio do e-mail (ex: example.com)"
+          defaultValue={initialData?.domain ?? undefined}
         />
         {errors?.domain && (
           <p className="text-xs font-medium text-red-500 dark:text-red-400">
@@ -73,9 +85,10 @@ export const OrganizationForm = () => {
       <div className="space-y-2">
         <div className="flex items-baseline space-x-2">
           <Checkbox
-            name="shouldAttchUsersByDomain"
-            id="shouldAttchUsersByDomain"
+            name="shouldAttachUsersByDomain"
+            id="shouldAttachUsersByDomain"
             className="translate-y-0.5"
+            defaultChecked={initialData?.shouldAttachUsersByDomain}
           />
           <label htmlFor="shouldAttchUsersByDomain" className="space-y-1">
             <span className="text-sm font-medium leading-none">
