@@ -2,6 +2,7 @@
 
 import { getCurrentOrganization } from '@/auth/auth'
 import { removeMember } from '@/http/remove-member'
+import { revokeInvite } from '@/http/revoke-invite'
 import { updateMember } from '@/http/update-member'
 import { Role } from '@saas/auth'
 import { revalidateTag } from 'next/cache'
@@ -32,4 +33,17 @@ export const updateMemberAction = async ({
   await updateMember({ org: currentOrg!, memberId, role })
 
   revalidateTag(`${currentOrg}/members`, 'max')
+}
+
+interface IRevokeInviteActionRequest {
+  inviteId: string
+}
+
+export const revokeInviteAction = async ({
+  inviteId,
+}: IRevokeInviteActionRequest) => {
+  const currentOrg = await getCurrentOrganization()
+  await revokeInvite({ org: currentOrg!, inviteId })
+
+  revalidateTag(`${currentOrg}/invites`, 'max')
 }

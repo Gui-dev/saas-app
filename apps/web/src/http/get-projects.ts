@@ -11,11 +11,9 @@ export interface IGetProjectsResponse {
     avatarUrl: string | null
     createdAt: Date
     owner: {
-      select: {
-        id: string
-        name: string | null
-        avatarUrl: string | null
-      }
+      id: string
+      name: string | null
+      avatarUrl: string | null
     }
   }[]
 }
