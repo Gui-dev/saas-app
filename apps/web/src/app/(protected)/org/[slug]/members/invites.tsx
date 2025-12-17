@@ -7,6 +7,7 @@ import { ability, getCurrentOrganization } from '@/auth/auth'
 import { getInvites } from '@/http/get-invites'
 import { XOctagon } from 'lucide-react'
 import { RevokeInviteButton } from './revoke-invite-button'
+import { CreateInviteForm } from './create-invite-form'
 
 export const Invites = async () => {
   const currentOrg = await getCurrentOrganization()
@@ -22,7 +23,9 @@ export const Invites = async () => {
               Convidar membro
             </CardTitle>
           </CardHeader>
-          <CardContent></CardContent>
+          <CardContent>
+            <CreateInviteForm />
+          </CardContent>
         </Card>
       )}
 

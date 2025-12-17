@@ -1,4 +1,5 @@
 import { FormEvent, useState, useTransition } from 'react'
+import { requestFormReset } from 'react-dom'
 
 export interface IFormState {
   success: boolean
@@ -32,6 +33,7 @@ export const useFormState = (
         await onSuccess()
       }
       setFormState(state)
+      requestFormReset(form)
     })
   }
 
