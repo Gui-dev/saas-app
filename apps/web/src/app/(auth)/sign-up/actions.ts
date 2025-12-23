@@ -3,6 +3,8 @@
 import { z } from 'zod'
 import { HTTPError } from 'ky'
 import { signUp } from '@/http/sign-up'
+import { cookies } from 'next/headers'
+import { acceptInvite } from '@/http/accept-invite'
 
 const signUpSchema = z
   .object({
@@ -23,6 +25,7 @@ const signUpSchema = z
   })
 
 export const signUpAction = async (data: FormData) => {
+  const cookieStore = await cookies()
   const result = signUpSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {
@@ -43,7 +46,16 @@ export const signUpAction = async (data: FormData) => {
       password: String(password),
     })
 
-    console.log('ID: ', id)
+    const inviteId = cookieStore.get('inviteId')?.value
+
+    if (inviteId) {
+      try {
+        await acceptInvite({ inviteId })
+        cookieStore.delete('inviteId')
+      } catch (err) {
+        console.error(err)
+      }
+    }
   } catch (error) {
     if (error instanceof HTTPError) {
       const { message } = await error.response.json()

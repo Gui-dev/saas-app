@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import githubIcon from '@/assets/github-icon.svg'
 import { signInWithEmailAndPassword } from './actions'
@@ -19,12 +19,14 @@ import { signInWithGithub } from '../actions'
 
 export const SignInForm = () => {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
     signInWithEmailAndPassword,
     () => {
       router.push('/')
     }
   )
+  const email = searchParams.get('email')
 
   return (
     <div className="space-y-4">
@@ -44,6 +46,7 @@ export const SignInForm = () => {
             type="email"
             name="email"
             id="email"
+            defaultValue={email ?? ''}
             placeholder="Digite seu e-mail"
           />
           {errors?.email && (

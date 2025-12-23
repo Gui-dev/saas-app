@@ -7,7 +7,7 @@ export interface IGetInvitesResponse {
     email: string
     role: Role
     createdAt: string
-    autor: {
+    author: {
       id: string
       name: string | null
     } | null
