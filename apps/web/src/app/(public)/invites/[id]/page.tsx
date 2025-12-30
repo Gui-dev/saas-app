@@ -8,10 +8,11 @@ import { getInitialsName } from '@/lib/get-initials-name'
 import { Separator } from '@/components/ui/separator'
 import { auth, isAuthenticated } from '@/auth/auth'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, LogIn } from 'lucide-react'
+import { CheckCircle, LogIn, LogOut } from 'lucide-react'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { acceptInvite } from '@/http/accept-invite'
+import Link from 'next/link'
 
 dayjs.extend(relativeTime)
 dayjs.locale(ptBR)
@@ -102,6 +103,35 @@ const Invites = async ({ params }: IInvitesProps) => {
               Se juntar à {invite.organization.name}
             </Button>
           </form>
+        )}
+
+        {isUserAuthenticated && !userIsAuthenticatedWithSameEmailFromInvite && (
+          <div className="space-y-4">
+            <p className="text-balance text-center tex-sm text-muted-foreground">
+              Este convite foi enviado para{' '}
+              <span className="text-foreground text-medium">
+                {invite.email}
+              </span>
+              , porém você está atualamente logado com{' '}
+              <span className="text-foreground text-medium">
+                {currentUserEmail}
+              </span>
+              .
+            </p>
+
+            <div className="space-y-2">
+              <Button className="w-full" variant="secondary" asChild>
+                <a href="/api/auth/sign-out">
+                  <LogOut className="mr-2 size-4" />
+                  Sair da conta {currentUserEmail}
+                </a>
+              </Button>
+
+              <Button className="w-full" variant="outline" asChild>
+                <Link href="/">Voltar ao Dashboard</Link>
+              </Button>
+            </div>
+          </div>
         )}
       </div>
     </div>
