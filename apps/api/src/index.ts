@@ -1,7 +1,7 @@
 import { app } from '@/http/server'
 import { env } from '@saas/env'
 
-const PORT = env.SERVER_PORT
+const PORT = env.PORT
 
 app
   .listen({
