@@ -6,6 +6,8 @@
     "access": "public"
   },
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.ts",
     "dev": "pnpm env:load tsx watch src/index.ts",
     "env:load": "dotenv -e ../../.env --",
     "db:migrate": "pnpm env:load prisma migrate dev",
@@ -41,6 +43,7 @@
     "pino-pretty": "^13.1.1",
     "prisma": "^6.16.3",
     "supertest": "^7.1.4",
+    "tsup": "^8.5.1",
     "tsx": "^4.20.6",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
