@@ -6,7 +6,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsup",
     "start": "node dist/index.ts",
     "dev": "pnpm env:load tsx watch src/index.ts",
     "env:load": "dotenv -e ../../.env --",
