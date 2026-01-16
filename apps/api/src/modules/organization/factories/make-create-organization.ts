@@ -1,7 +1,7 @@
 import { OrganizationRepository } from '../repositories/organization-repository'
 import {
   CreateOrganizationUseCase,
-  ICreateOrganizationUseCaseRequest,
+  type ICreateOrganizationUseCaseRequest,
 } from '../use-cases/create-organization'
 
 export const makeCreateOrganization = async ({

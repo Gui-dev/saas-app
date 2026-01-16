@@ -1,7 +1,7 @@
 import { TokenRepository } from '@/modules/token/repositories/token-repository'
 import { UserRepository } from '../repositories/user-repository'
 import {
-  IResetPasswordUseCaseRequest,
+  type IResetPasswordUseCaseRequest,
   ResetPasswordUseCase,
 } from '../use-cases/reset-password'
 

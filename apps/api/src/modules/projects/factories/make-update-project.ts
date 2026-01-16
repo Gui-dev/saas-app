@@ -1,6 +1,6 @@
 import { ProjectRepository } from '../repositories/project-repository'
 import {
-  IUpdateProjectUseCaseRequest,
+  type IUpdateProjectUseCaseRequest,
   UpdateProjectUseCase,
 } from '../use-case/update-project'
 

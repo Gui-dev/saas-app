@@ -1,5 +1,6 @@
-import { Invite } from '@/generated/prisma'
-import {
+import type { Invite } from '@/generated/prisma'
+import { prisma } from '@/lib/prisma'
+import type {
   IAcceptInviteRequest,
   ICreateInvite,
   IFindByEmailAndOrganizationIdRequest,
@@ -8,7 +9,6 @@ import {
   IFindByUserEmailResponse,
   IInviteRepositoryContract,
 } from '../contracts/invite-repository-contract'
-import { prisma } from '@/lib/prisma'
 
 export class InviteRepository implements IInviteRepositoryContract {
   public async findByInviteId(

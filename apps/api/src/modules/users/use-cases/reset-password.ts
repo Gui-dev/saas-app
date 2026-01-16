@@ -1,7 +1,7 @@
-import { ITokenRepositoryContract } from '@/modules/token/contracts/token-repository-contract'
-import { IUserRepositoryContract } from '../contracts/user-repository-contract'
-import { UnauthorizedError } from '@/http/_errors/unauthorized-error'
 import { hash } from 'bcryptjs'
+import { UnauthorizedError } from '@/http/_errors/unauthorized-error'
+import type { ITokenRepositoryContract } from '@/modules/token/contracts/token-repository-contract'
+import type { IUserRepositoryContract } from '../contracts/user-repository-contract'
 
 export interface IResetPasswordUseCaseRequest {
   code: string

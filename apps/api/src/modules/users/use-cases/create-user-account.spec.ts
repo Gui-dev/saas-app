@@ -1,10 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-
-import { CreateUserAccountUseCase } from '@/modules/users/use-cases/create-user-account'
 import { BadRequestError } from '@/http/_errors/bad-request-error'
+import { InMemoryOrganizationRepository } from '@/modules/organization/repositories/in-memory/in-memory-organization-repository'
 
 import { InMemoryUserRepository } from '@/modules/users/repositories/in-memory/in-memory-user-repository'
-import { InMemoryOrganizationRepository } from '@/modules/organization/repositories/in-memory/in-memory-organization-repository'
+import { CreateUserAccountUseCase } from '@/modules/users/use-cases/create-user-account'
 
 let userRepository: InMemoryUserRepository
 let organizationRepository: InMemoryOrganizationRepository

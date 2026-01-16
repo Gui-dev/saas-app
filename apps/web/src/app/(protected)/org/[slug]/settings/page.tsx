@@ -6,10 +6,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ShutdownOrganizationButton } from './shutdown-organization-button'
-import { OrganizationForm } from '../../organization-form'
 import { getOrganization } from '@/http/get-organization'
+import { OrganizationForm } from '../../organization-form'
 import { Billing } from './billing'
+import { ShutdownOrganizationButton } from './shutdown-organization-button'
 
 const Settings = async () => {
   const currentOrg = await getCurrentOrganization()
@@ -22,7 +22,7 @@ const Settings = async () => {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Settings</h1>
+      <h1 className="font-bold text-2xl">Settings</h1>
 
       <div className="space-y-4">
         {canUpdateOrganization && (

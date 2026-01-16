@@ -1,21 +1,18 @@
 'use client'
 
 import { AlertTriangle, Loader2 } from 'lucide-react'
-
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
+import githubIcon from '@/assets/github-icon.svg'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useRouter, useSearchParams } from 'next/navigation'
-
-import githubIcon from '@/assets/github-icon.svg'
-import { signInWithEmailAndPassword } from './actions'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-
 import { useFormState } from '@/hooks/use-form-state'
 import { signInWithGithub } from '../actions'
+import { signInWithEmailAndPassword } from './actions'
 
 export const SignInForm = () => {
   const router = useRouter()
@@ -50,7 +47,7 @@ export const SignInForm = () => {
             placeholder="Digite seu e-mail"
           />
           {errors?.email && (
-            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+            <p className="font-medium text-red-500 text-xs dark:text-red-400">
               {errors.email[0]}
             </p>
           )}
@@ -65,14 +62,14 @@ export const SignInForm = () => {
             placeholder="Digite sua senha"
           />
           {errors?.password && (
-            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+            <p className="font-medium text-red-500 text-xs dark:text-red-400">
               {errors.password[0]}
             </p>
           )}
 
           <Link
             href="/forgot-password"
-            className="text-xs font-medium text-foreground hover:underline"
+            className="font-medium text-foreground text-xs hover:underline"
           >
             Esqueceu sua senha?
           </Link>
@@ -93,12 +90,12 @@ export const SignInForm = () => {
         <Button
           type="submit"
           variant="outline"
-          className="w-full flex items-center"
+          className="flex w-full items-center"
         >
           <Image
             src={githubIcon}
             alt="Github icon"
-            className="size-4 mr-2 dark:invert"
+            className="mr-2 size-4 dark:invert"
           />
           Entrar com o Github
         </Button>

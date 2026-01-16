@@ -1,7 +1,7 @@
-import { auth } from '@/http/middlewares/auth'
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { FastifyInstance } from 'fastify/types/instance'
+import type { FastifyInstance } from 'fastify/types/instance'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
+import { auth } from '@/http/middlewares/auth'
 import { makeCreateOrganization } from '../factories/make-create-organization'
 
 export const createOrganization = async (app: FastifyInstance) => {

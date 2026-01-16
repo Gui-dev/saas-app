@@ -1,6 +1,6 @@
-import { IMemberRepositoryContract } from '@/modules/members/contracts/member-repository-contract'
-import { IOrganizationRepositoryContract } from '../contracts/organization-repository-contract'
 import { BadRequestError } from '@/http/_errors/bad-request-error'
+import type { IMemberRepositoryContract } from '@/modules/members/contracts/member-repository-contract'
+import type { IOrganizationRepositoryContract } from '../contracts/organization-repository-contract'
 
 export interface ITransferOrganizationUseCaseRequest {
   organizationId: string

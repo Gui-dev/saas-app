@@ -1,6 +1,6 @@
 import { BadRequestError } from '@/http/_errors/bad-request-error'
-import { IMemberRepositoryContract } from '@/modules/members/contracts/member-repository-contract'
-import { IInviteRepositoryContract } from '../contracts/invite-repository-contract'
+import type { IMemberRepositoryContract } from '@/modules/members/contracts/member-repository-contract'
+import type { IInviteRepositoryContract } from '../contracts/invite-repository-contract'
 
 export interface ICreateInviteUseCaseRequest {
   organizationId: string

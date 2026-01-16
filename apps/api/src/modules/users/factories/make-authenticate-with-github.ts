@@ -2,7 +2,7 @@ import { AccountRepository } from '@/modules/accounts/repositories/account-repos
 import { UserRepository } from '../repositories/user-repository'
 import {
   AuthenticateWithGithubUseCase,
-  IAuthenticateWithGithubRequest,
+  type IAuthenticateWithGithubRequest,
 } from '../use-cases/authenticate-with-github'
 
 export const makeAuthenticateWithGithub = async ({

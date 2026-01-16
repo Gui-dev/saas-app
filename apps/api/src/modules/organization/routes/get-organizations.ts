@@ -1,9 +1,9 @@
-import { FastifyInstance } from 'fastify'
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { z } from 'zod'
-import { makeGetOrganizations } from '../factories/make-get-organizations'
 import { rolesSchema } from '@saas/auth'
+import type { FastifyInstance } from 'fastify'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
+import { z } from 'zod'
 import { auth } from '@/http/middlewares/auth'
+import { makeGetOrganizations } from '../factories/make-get-organizations'
 
 export const getOrganizations = async (app: FastifyInstance) => {
   app

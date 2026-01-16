@@ -1,11 +1,10 @@
 'use server'
 
-import { z } from 'zod'
-import { cookies } from 'next/headers'
 import { HTTPError } from 'ky'
-
-import { signInWithPassword } from '@/http/sign-in-with-password'
+import { cookies } from 'next/headers'
+import { z } from 'zod'
 import { acceptInvite } from '@/http/accept-invite'
+import { signInWithPassword } from '@/http/sign-in-with-password'
 
 const signInSchema = z.object({
   email: z

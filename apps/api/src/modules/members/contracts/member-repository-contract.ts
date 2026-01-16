@@ -1,4 +1,4 @@
-import { Member, Prisma } from '@/generated/prisma'
+import type { Member, Prisma } from '@/generated/prisma'
 
 export interface IFindByMemberIdAndOrganizationId {
   memberId: string

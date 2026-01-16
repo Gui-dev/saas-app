@@ -1,5 +1,5 @@
 import { BadRequestError } from '@/http/_errors/bad-request-error'
-import { IProjectRepositoryContract } from '../contracts/project-repository-contract'
+import type { IProjectRepositoryContract } from '../contracts/project-repository-contract'
 
 export interface IUpdateProjectUseCaseRequest {
   userId: string

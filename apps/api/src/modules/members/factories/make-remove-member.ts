@@ -1,6 +1,6 @@
 import { MemberRepository } from '../repositories/member-repository'
 import {
-  IRemoveMemberUseCaseRequest,
+  type IRemoveMemberUseCaseRequest,
   RemoveMemberUseCase,
 } from '../use-cases/remove-member'
 

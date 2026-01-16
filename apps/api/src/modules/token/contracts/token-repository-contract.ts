@@ -1,4 +1,4 @@
-import { Token } from '@/generated/prisma'
+import type { Token } from '@/generated/prisma'
 
 export interface ICreateToken {
   type: 'PASSWORD_RECOVER'

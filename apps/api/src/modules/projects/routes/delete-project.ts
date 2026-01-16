@@ -1,13 +1,12 @@
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { FastifyInstance } from 'fastify/types/instance'
+import { projectSchema } from '@saas/auth'
+import type { FastifyInstance } from 'fastify/types/instance'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
-
+import { UnauthorizedError } from '@/http/_errors/unauthorized-error'
 import { auth } from '@/http/middlewares/auth'
 import { getUserPermissions } from '@/utils/get-user-permissions'
-import { UnauthorizedError } from '@/http/_errors/unauthorized-error'
-import { projectSchema } from '@saas/auth'
-import { makeGetProjectByIdAndOrganizationId } from '../factories/make-get-project-by-id-and-organization-id'
 import { makeDeleteProject } from '../factories/make-delete-project'
+import { makeGetProjectByIdAndOrganizationId } from '../factories/make-get-project-by-id-and-organization-id'
 
 export const deleteProject = async (app: FastifyInstance) => {
   app

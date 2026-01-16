@@ -1,7 +1,6 @@
-import { Header } from '@/components/header'
-import { ProjectForm } from './project-form'
-import { ability } from '@/auth/auth'
 import { redirect } from 'next/navigation'
+import { ability } from '@/auth/auth'
+import { ProjectForm } from './project-form'
 
 const CreateProject = async () => {
   const permissions = await ability()
@@ -12,7 +11,7 @@ const CreateProject = async () => {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Criar um novo projeto</h1>
+      <h1 className="font-bold text-2xl">Criar um novo projeto</h1>
 
       <ProjectForm />
     </div>

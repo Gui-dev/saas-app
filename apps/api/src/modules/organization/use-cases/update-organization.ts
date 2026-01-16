@@ -1,5 +1,5 @@
 import { BadRequestError } from '@/http/_errors/bad-request-error'
-import { IOrganizationRepositoryContract } from '../contracts/organization-repository-contract'
+import type { IOrganizationRepositoryContract } from '../contracts/organization-repository-contract'
 
 export interface IUpdateOrganizationUseCaseRequest {
   domain: string | undefined

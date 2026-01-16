@@ -1,15 +1,14 @@
 'use client'
 
-import { useState } from 'react'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import ptBR from 'dayjs/locale/pt-br'
-import { CheckIcon, UserPlus2, X } from 'lucide-react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-
+import dayjs from 'dayjs'
+import ptBR from 'dayjs/locale/pt-br'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import { CheckIcon, UserPlus2, X } from 'lucide-react'
+import { useState } from 'react'
+import { getPendingInvites } from '@/http/get-pending-invites'
 import { Button } from '../ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import { getPendingInvites } from '@/http/get-pending-invites'
 import { acceptInviteAction, rejectInviteAction } from './actions'
 
 dayjs.extend(relativeTime)
@@ -44,12 +43,12 @@ export const PendingInvites = () => {
       </PopoverTrigger>
 
       <PopoverContent className="w-80 space-y-2">
-        <span className="text-sm font-medium">
+        <span className="font-medium text-sm">
           Convites pendentes ({data?.invites.length ?? 0})
         </span>
 
         {data?.invites.length === 0 && (
-          <p className="text-sm leading-relaxed text-muted-foreground">
+          <p className="text-muted-foreground text-sm leading-relaxed">
             Não há convites pendentes.
           </p>
         )}
@@ -57,12 +56,12 @@ export const PendingInvites = () => {
         {data?.invites.map(invite => {
           return (
             <div className="space-y-2" key={invite.id}>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                <span className="text-foreground font-medium">
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                <span className="font-medium text-foreground">
                   {invite.author?.name}
                 </span>{' '}
                 convidou voce para se juntar a{' '}
-                <span className="text-foreground font-medium">
+                <span className="font-medium text-foreground">
                   {invite.organization.name}
                 </span>
                 . <span>{dayjs(invite.createdAt).fromNow()}</span>

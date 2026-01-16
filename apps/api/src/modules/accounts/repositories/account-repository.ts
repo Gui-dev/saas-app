@@ -1,9 +1,9 @@
-import { Account } from '@/generated/prisma'
-import {
+import type { Account } from '@/generated/prisma'
+import { prisma } from '@/lib/prisma'
+import type {
   IAccountRepositoryContract,
   ICreateAccount,
 } from '../contracts/account-repository-contract'
-import { prisma } from '@/lib/prisma'
 
 export class AccountRepository implements IAccountRepositoryContract {
   public async findByUserId(userId: string): Promise<Account | null> {

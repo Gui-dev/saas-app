@@ -1,6 +1,6 @@
 import { compare } from 'bcryptjs'
-import { IUserRepositoryContract } from '../contracts/user-repository-contract'
 import { BadRequestError } from '@/http/_errors/bad-request-error'
+import type { IUserRepositoryContract } from '../contracts/user-repository-contract'
 
 interface IAuthenticateWithPasswordRequest {
   email: string

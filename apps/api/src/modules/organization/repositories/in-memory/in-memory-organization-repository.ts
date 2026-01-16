@@ -1,9 +1,9 @@
-import { Organization } from '@/generated/prisma'
-import {
+import { randomUUID } from 'node:crypto'
+import type { Organization } from '@/generated/prisma'
+import type {
   ICreateOrganization,
   IOrganizationRepositoryContract,
 } from '../../contracts/organization-repository-contract'
-import { randomUUID } from 'crypto'
 
 export class InMemoryOrganizationRepository
   implements IOrganizationRepositoryContract

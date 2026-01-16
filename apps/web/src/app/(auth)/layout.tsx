@@ -1,5 +1,5 @@
-import { isAuthenticated } from '@/auth/auth'
 import { redirect } from 'next/navigation'
+import { isAuthenticated } from '@/auth/auth'
 
 export default async function AuthLayout({
   children,
@@ -11,7 +11,7 @@ export default async function AuthLayout({
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center flex-col">
+    <div className="flex min-h-screen flex-col items-center justify-center">
       <div className="w-full max-w-xs">{children}</div>
     </div>
   )

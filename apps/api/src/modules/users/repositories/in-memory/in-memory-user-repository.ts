@@ -1,7 +1,7 @@
-import { randomUUID } from 'crypto'
+import { randomUUID } from 'node:crypto'
 
-import { User } from '@/generated/prisma'
-import {
+import type { User } from '@/generated/prisma'
+import type {
   FindByIdResponse,
   ICreateUser,
   IUpdateUser,

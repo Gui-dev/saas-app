@@ -1,5 +1,7 @@
-import { Project } from '@/generated/prisma'
-import {
+import type { Project } from '@/generated/prisma'
+import { prisma } from '@/lib/prisma'
+import { createSlug } from '@/utils/create-slug'
+import type {
   ICreateProject,
   IDeleteProject,
   IFindAllProjectsByOrganizationIdResponse,
@@ -9,8 +11,6 @@ import {
   IProjectRepositoryContract,
   IUpdateProject,
 } from '../contracts/project-repository-contract'
-import { prisma } from '@/lib/prisma'
-import { createSlug } from '@/utils/create-slug'
 
 export class ProjectRepository implements IProjectRepositoryContract {
   public async findByProjectIdAndOrganizationId({

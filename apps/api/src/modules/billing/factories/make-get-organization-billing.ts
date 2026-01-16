@@ -1,9 +1,9 @@
 import { MemberRepository } from '@/modules/members/repositories/member-repository'
+import { ProjectRepository } from '@/modules/projects/repositories/project-repository'
 import {
   GetOrganizationBillingUseCase,
-  IGetOrganizationBillingUseCaseRequest,
+  type IGetOrganizationBillingUseCaseRequest,
 } from '../use-cases/get-organization-billing'
-import { ProjectRepository } from '@/modules/projects/repositories/project-repository'
 
 export const makeGetOrganizationBilling = async ({
   organizationId,

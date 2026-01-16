@@ -1,17 +1,15 @@
 'use client'
 
 import { AlertTriangle, Loader2 } from 'lucide-react'
-
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import githubIcon from '@/assets/github-icon.svg'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-
-import githubIcon from '@/assets/github-icon.svg'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 import { useFormState } from '@/hooks/use-form-state'
 import { signInWithGithub } from '../actions'
@@ -48,7 +46,7 @@ export const SignUpForm = () => {
             placeholder="Digite seu nome"
           />
           {errors?.name && (
-            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+            <p className="font-medium text-red-500 text-xs dark:text-red-400">
               {errors.name[0]}
             </p>
           )}
@@ -63,7 +61,7 @@ export const SignUpForm = () => {
             placeholder="Digite seu e-mail"
           />
           {errors?.email && (
-            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+            <p className="font-medium text-red-500 text-xs dark:text-red-400">
               {errors.email[0]}
             </p>
           )}
@@ -78,7 +76,7 @@ export const SignUpForm = () => {
             placeholder="Digite sua senha"
           />
           {errors?.password && (
-            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+            <p className="font-medium text-red-500 text-xs dark:text-red-400">
               {errors.password[0]}
             </p>
           )}
@@ -93,7 +91,7 @@ export const SignUpForm = () => {
             placeholder="Digite sua senha novamente"
           />
           {errors?.password_confirmation && (
-            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+            <p className="font-medium text-red-500 text-xs dark:text-red-400">
               {errors.password_confirmation[0]}
             </p>
           )}
@@ -114,12 +112,12 @@ export const SignUpForm = () => {
         <Button
           type="submit"
           variant="outline"
-          className="w-full flex items-center"
+          className="flex w-full items-center"
         >
           <Image
             src={githubIcon}
             alt="Github icon"
-            className="size-4 mr-2 dark:invert"
+            className="mr-2 size-4 dark:invert"
           />
           Criar conta com o Github
         </Button>

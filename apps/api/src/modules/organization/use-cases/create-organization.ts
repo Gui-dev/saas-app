@@ -1,6 +1,6 @@
 import { BadRequestError } from '@/http/_errors/bad-request-error'
-import { IOrganizationRepositoryContract } from '../contracts/organization-repository-contract'
 import { createSlug } from '@/utils/create-slug'
+import type { IOrganizationRepositoryContract } from '../contracts/organization-repository-contract'
 
 export interface ICreateOrganizationUseCaseRequest {
   ownerId: string

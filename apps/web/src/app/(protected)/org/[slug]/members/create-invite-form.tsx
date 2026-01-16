@@ -1,15 +1,10 @@
 'use client'
 
 import { AlertTriangle, Loader2, UserPlus } from 'lucide-react'
-
+import { useParams } from 'next/navigation'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { useFormState } from '@/hooks/use-form-state'
-import { Textarea } from '@/components/ui/textarea'
-import { useParams } from 'next/navigation'
-import { queryClient } from '@/lib/react-query'
 import {
   Select,
   SelectContent,
@@ -17,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useFormState } from '@/hooks/use-form-state'
 import { createInviteAction } from './actions'
 
 export const CreateInviteForm = () => {
@@ -47,7 +43,7 @@ export const CreateInviteForm = () => {
       )}
 
       <div className="flex items-center gap-2">
-        <div className="space-y-1 flex-1">
+        <div className="flex-1 space-y-1">
           <Input
             type="email"
             name="email"
@@ -55,14 +51,14 @@ export const CreateInviteForm = () => {
             placeholder="Digite o e-mail do convidado (batman@email.com)"
           />
           {errors?.email && (
-            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+            <p className="font-medium text-red-500 text-xs dark:text-red-400">
               {errors.email[0]}
             </p>
           )}
         </div>
 
         <Select name="role" defaultValue="MEMBER">
-          <SelectTrigger className="w-32 h-8">
+          <SelectTrigger className="h-8 w-32">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

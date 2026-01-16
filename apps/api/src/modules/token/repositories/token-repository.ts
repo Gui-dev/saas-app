@@ -1,9 +1,9 @@
+import type { Token } from '@/generated/prisma'
 import { prisma } from '@/lib/prisma'
-import {
+import type {
   ICreateToken,
   ITokenRepositoryContract,
 } from '../contracts/token-repository-contract'
-import { Token } from '@/generated/prisma'
 
 export class TokenRepository implements ITokenRepositoryContract {
   public async findById(tokenId: string): Promise<Token | null> {

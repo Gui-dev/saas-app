@@ -1,6 +1,6 @@
 import { BadRequestError } from '@/http/_errors/bad-request-error'
-import { IUserRepositoryContract } from '../contracts/user-repository-contract'
-import { IAccountRepositoryContract } from '@/modules/accounts/contracts/account-repository-contract'
+import type { IAccountRepositoryContract } from '@/modules/accounts/contracts/account-repository-contract'
+import type { IUserRepositoryContract } from '../contracts/user-repository-contract'
 
 export interface IAuthenticateWithGithubRequest {
   githubId: string

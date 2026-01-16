@@ -1,6 +1,6 @@
-import { IUserRepositoryContract } from '@/modules/users/contracts/user-repository-contract'
-import { IInviteRepositoryContract } from '../contracts/invite-repository-contract'
 import { BadRequestError } from '@/http/_errors/bad-request-error'
+import type { IUserRepositoryContract } from '@/modules/users/contracts/user-repository-contract'
+import type { IInviteRepositoryContract } from '../contracts/invite-repository-contract'
 
 export interface IGetPendingInvitesUseCaseRequest {
   userId: string

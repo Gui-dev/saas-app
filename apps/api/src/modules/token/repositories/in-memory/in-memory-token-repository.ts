@@ -1,9 +1,9 @@
-import { Token } from '@/generated/prisma'
-import {
-  ITokenRepositoryContract,
+import { randomUUID } from 'node:crypto'
+import type { Token } from '@/generated/prisma'
+import type {
   ICreateToken,
+  ITokenRepositoryContract,
 } from '../../contracts/token-repository-contract'
-import { randomUUID } from 'crypto'
 
 export class InMemoryTokenRepository implements ITokenRepositoryContract {
   private items: Token[] = []

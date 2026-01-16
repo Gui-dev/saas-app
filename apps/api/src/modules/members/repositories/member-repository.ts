@@ -1,5 +1,6 @@
-import { Member } from '@/generated/prisma'
-import {
+import type { Member } from '@/generated/prisma'
+import { prisma } from '@/lib/prisma'
+import type {
   IDeleteRequest,
   IFindByMemberIdAndOrganizationId,
   IFindByOrganizationIdAndUserEmail,
@@ -10,7 +11,6 @@ import {
   IUpdateMemberByMemberId,
   IUpdateMemberByUserId,
 } from '../contracts/member-repository-contract'
-import { prisma } from '@/lib/prisma'
 
 export class MemberRepository implements IMemberRepositoryContract {
   public async findByMemberIdAndOrganizationId({

@@ -1,7 +1,7 @@
 import { ProjectRepository } from '../repositories/project-repository'
 import {
   GetProjectsUseCase,
-  IGetProjectsUseCaseRequest,
+  type IGetProjectsUseCaseRequest,
 } from '../use-case/get-projects'
 
 export const makeGetProjects = async ({

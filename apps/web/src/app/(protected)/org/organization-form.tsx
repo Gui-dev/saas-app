@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { AlertTriangle, Loader2 } from 'lucide-react'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -10,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/use-form-state'
 import { createOrganizationAction, updateOrganizationAction } from './actions'
-import { IOrganizationSchema } from './organization-schema'
+import type { IOrganizationSchema } from './organization-schema'
 
 interface IOrganizationFormProps {
   isUpdating?: boolean
@@ -59,7 +58,7 @@ export const OrganizationForm = ({
           defaultValue={initialData?.name}
         />
         {errors?.name && (
-          <p className="text-xs font-medium text-red-500 dark:text-red-400">
+          <p className="font-medium text-red-500 text-xs dark:text-red-400">
             {errors.name[0]}
           </p>
         )}
@@ -76,7 +75,7 @@ export const OrganizationForm = ({
           defaultValue={initialData?.domain ?? undefined}
         />
         {errors?.domain && (
-          <p className="text-xs font-medium text-red-500 dark:text-red-400">
+          <p className="font-medium text-red-500 text-xs dark:text-red-400">
             {errors.domain[0]}
           </p>
         )}
@@ -91,17 +90,17 @@ export const OrganizationForm = ({
             defaultChecked={initialData?.shouldAttachUsersByDomain}
           />
           <label htmlFor="shouldAttchUsersByDomain" className="space-y-1">
-            <span className="text-sm font-medium leading-none">
+            <span className="font-medium text-sm leading-none">
               Adicionar novos membros automaticamente
             </span>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               Isso convidará automaticamente todos os membros com o mesmo
               domínio de e-mail para esta organização.
             </p>
           </label>
         </div>
         {errors?.shouldAttchUsersByDomain && (
-          <p className="text-xs font-medium text-red-500 dark:text-red-400">
+          <p className="font-medium text-red-500 text-xs dark:text-red-400">
             {errors.shouldAttchUsersByDomain[0]}
           </p>
         )}

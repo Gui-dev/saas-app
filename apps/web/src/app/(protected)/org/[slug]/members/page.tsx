@@ -7,7 +7,7 @@ const Members = async () => {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Members</h1>
+      <h1 className="font-bold text-2xl">Members</h1>
 
       <div className="spce-y-4">
         {permissions?.can('get', 'Invite') && <Invites />}

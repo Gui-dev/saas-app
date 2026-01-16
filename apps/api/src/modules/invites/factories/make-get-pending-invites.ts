@@ -2,7 +2,7 @@ import { UserRepository } from '@/modules/users/repositories/user-repository'
 import { InviteRepository } from '../repositories/invite-repository'
 import {
   GetPendingInvitesUseCase,
-  IGetPendingInvitesUseCaseRequest,
+  type IGetPendingInvitesUseCaseRequest,
 } from '../use-case/get-pending-invites'
 
 export const makeGetPendingInvites = async ({

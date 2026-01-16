@@ -2,7 +2,7 @@ import { UserRepository } from '@/modules/users/repositories/user-repository'
 import { InviteRepository } from '../repositories/invite-repository'
 import {
   AcceptInviteUseCase,
-  IAcceptInviteUseCaseRequest,
+  type IAcceptInviteUseCaseRequest,
 } from '../use-case/accept-invite'
 
 export const makeAcceptInvite = async ({

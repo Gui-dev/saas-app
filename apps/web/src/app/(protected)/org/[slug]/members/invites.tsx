@@ -1,13 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
-
 import { ability, getCurrentOrganization } from '@/auth/auth'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { getInvites } from '@/http/get-invites'
-import { XOctagon } from 'lucide-react'
-import { RevokeInviteButton } from './revoke-invite-button'
 import { CreateInviteForm } from './create-invite-form'
+import { RevokeInviteButton } from './revoke-invite-button'
 
 export const Invites = async () => {
   const currentOrg = await getCurrentOrganization()
@@ -19,7 +15,7 @@ export const Invites = async () => {
       {permissions?.can('create', 'Invite') && (
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl font-bold">
+            <CardTitle className="font-bold text-2xl">
               Convidar membro
             </CardTitle>
           </CardHeader>
@@ -30,7 +26,7 @@ export const Invites = async () => {
       )}
 
       <div className="space-y-2">
-        <h2 className="text-lg semi-bold">Convidados</h2>
+        <h2 className="semi-bold text-lg">Convidados</h2>
 
         <div className="rounded border">
           <Table>

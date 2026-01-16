@@ -1,14 +1,14 @@
 'use server'
 
+import { type Role, rolesSchema } from '@saas/auth'
+import { HTTPError } from 'ky'
+import { revalidateTag } from 'next/cache'
+import { z } from 'zod'
 import { getCurrentOrganization } from '@/auth/auth'
 import { createInvite } from '@/http/create-invite'
 import { removeMember } from '@/http/remove-member'
 import { revokeInvite } from '@/http/revoke-invite'
 import { updateMember } from '@/http/update-member'
-import { Role, rolesSchema } from '@saas/auth'
-import { HTTPError } from 'ky'
-import { revalidateTag } from 'next/cache'
-import { z } from 'zod'
 
 const createInviteSchema = z.object({
   email: z.string().email({ message: 'E-mail inválido' }),

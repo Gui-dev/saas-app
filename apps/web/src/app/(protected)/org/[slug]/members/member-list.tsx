@@ -1,3 +1,5 @@
+import { organizationSchema } from '@saas/auth'
+import { ArrowLeftRight, Crown, UserMinus } from 'lucide-react'
 import { ability, getCurrentOrganization } from '@/auth/auth'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -6,9 +8,6 @@ import { getMembers } from '@/http/get-members'
 import { getMembership } from '@/http/get-membership'
 import { getOrganization } from '@/http/get-organization'
 import { getInitialsName } from '@/lib/get-initials-name'
-import { organizationSchema } from '@saas/auth'
-import { ArrowLeftRight, Crown, UserMinus } from 'lucide-react'
-import Image from 'next/image'
 import { removeMemberAction } from './actions'
 import { UpdateMemberRoleSelect } from './update-member-role-select'
 
@@ -24,7 +23,7 @@ export const MemberList = async () => {
 
   return (
     <div className="space-y-2">
-      <h2 className="text-lg semi-bold">Members</h2>
+      <h2 className="semi-bold text-lg">Members</h2>
 
       <div className="rounded border">
         <Table>
@@ -46,17 +45,17 @@ export const MemberList = async () => {
                   </TableCell>
                   <TableCell className="py-2.5">
                     <div className="flex flex-col">
-                      <span className="font-medium inline-flex items-center gap-2">
+                      <span className="inline-flex items-center gap-2 font-medium">
                         {member.name}
                         {member.userId === membership?.userId && ' (me)'}
                         {organization.ownerId === member.userId && (
-                          <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+                          <span className="inline-flex items-center gap-1 text-muted-foreground text-xs">
                             <Crown className="size-4" />
                             Owner
                           </span>
                         )}
                       </span>
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-muted-foreground text-sm">
                         {member.email}
                       </span>
                     </div>

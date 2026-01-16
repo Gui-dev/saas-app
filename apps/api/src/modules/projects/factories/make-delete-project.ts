@@ -1,7 +1,7 @@
 import { ProjectRepository } from '../repositories/project-repository'
 import {
   DeleteProjectUseCase,
-  IDeleteProjectUseCaseRequest,
+  type IDeleteProjectUseCaseRequest,
 } from '../use-case/delete-project'
 
 export const makeDeleteProject = async ({

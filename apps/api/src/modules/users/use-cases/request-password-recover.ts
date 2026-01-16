@@ -1,5 +1,5 @@
-import { IUserRepositoryContract } from '../contracts/user-repository-contract'
-import { ITokenRepositoryContract } from '@/modules/token/contracts/token-repository-contract'
+import type { ITokenRepositoryContract } from '@/modules/token/contracts/token-repository-contract'
+import type { IUserRepositoryContract } from '../contracts/user-repository-contract'
 
 export class RequestPasswordRecoverUseCase {
   constructor(
@@ -16,7 +16,7 @@ export class RequestPasswordRecoverUseCase {
 
     const token = await this.tokenRepository.create({
       type: 'PASSWORD_RECOVER',
-      userId: userFromEmail!.id,
+      userId: userFromEmail?.id,
     })
 
     return {

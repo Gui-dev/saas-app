@@ -1,13 +1,13 @@
 import { Slash } from 'lucide-react'
 import Image from 'next/image'
 import alienLogo from '@/assets/alien.svg'
-import { OrganizationSwitcher } from './organization-switcher'
-import { ProfileButton } from './profile-button'
 import { ability } from '@/auth/auth'
-import { Separator } from './ui/separator'
-import { ThemeSwitcher } from './theme/theme-switcher'
-import { ProjectSwitcher } from './project-switcher'
+import { OrganizationSwitcher } from './organization-switcher'
 import { PendingInvites } from './pending-invites'
+import { ProfileButton } from './profile-button'
+import { ProjectSwitcher } from './project-switcher'
+import { ThemeSwitcher } from './theme/theme-switcher'
+import { Separator } from './ui/separator'
 
 export const Header = async () => {
   const permissions = await ability()
@@ -22,12 +22,12 @@ export const Header = async () => {
           height={40}
           className="size-6 dark:invert"
         />
-        <Slash className="-rotate-[24deg] size-3 text-border" />
+        <Slash className="-rotate-24 size-3 text-border" />
         <OrganizationSwitcher />
 
         {permissions?.can('get', 'Project') && (
           <>
-            <Slash className="-rotate-[24deg] size-3 text-border" />
+            <Slash className="-rotate-24 size-3 text-border" />
             <ProjectSwitcher />
           </>
         )}

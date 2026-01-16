@@ -1,7 +1,7 @@
 import { InviteRepository } from '../repositories/invite-repository'
 import {
   GetInvitesUseCase,
-  IGetInvitesUseCaseRequest,
+  type IGetInvitesUseCaseRequest,
 } from '../use-case/get-invites'
 
 export const makeGetInvites = async ({

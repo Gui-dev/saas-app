@@ -1,6 +1,6 @@
 import { InviteRepository } from '../repositories/invite-repository'
 import {
-  IRevokeInviteUseCaseRequest,
+  type IRevokeInviteUseCaseRequest,
   RevokeInviteUseCase,
 } from '../use-case/revoke-invite'
 

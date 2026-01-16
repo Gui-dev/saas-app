@@ -1,7 +1,7 @@
 import { MemberRepository } from '@/modules/members/repositories/member-repository'
 import { OrganizationRepository } from '../repositories/organization-repository'
 import {
-  ITransferOrganizationUseCaseRequest,
+  type ITransferOrganizationUseCaseRequest,
   TransferOrganizationUseCase,
 } from '../use-cases/transfer-organization'
 

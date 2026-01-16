@@ -1,11 +1,9 @@
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { FastifyInstance } from 'fastify/types/instance'
+import type { FastifyInstance } from 'fastify/types/instance'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
-
+import { UnauthorizedError } from '@/http/_errors/unauthorized-error'
 import { auth } from '@/http/middlewares/auth'
 import { getUserPermissions } from '@/utils/get-user-permissions'
-import { UnauthorizedError } from '@/http/_errors/unauthorized-error'
-import { BadRequestError } from '@/http/_errors/bad-request-error'
 import { makeGetInvites } from '../factories/make-get-invites'
 
 export const getInvites = async (app: FastifyInstance) => {

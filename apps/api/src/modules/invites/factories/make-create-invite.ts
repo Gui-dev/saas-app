@@ -2,7 +2,7 @@ import { MemberRepository } from '@/modules/members/repositories/member-reposito
 import { InviteRepository } from '../repositories/invite-repository'
 import {
   CreateInviteUseCase,
-  ICreateInviteUseCaseRequest,
+  type ICreateInviteUseCaseRequest,
 } from '../use-case/create-invite'
 
 export const makeCreateInvite = async ({

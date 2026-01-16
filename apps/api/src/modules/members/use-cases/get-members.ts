@@ -1,4 +1,4 @@
-import { IMemberRepositoryContract } from '../contracts/member-repository-contract'
+import type { IMemberRepositoryContract } from '../contracts/member-repository-contract'
 
 export interface IGetMembersUseCaseRequest {
   organizationId: string

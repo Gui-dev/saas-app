@@ -1,10 +1,10 @@
 'use server'
 
-import { z } from 'zod'
 import { HTTPError } from 'ky'
-import { signUp } from '@/http/sign-up'
 import { cookies } from 'next/headers'
+import { z } from 'zod'
 import { acceptInvite } from '@/http/accept-invite'
+import { signUp } from '@/http/sign-up'
 
 const signUpSchema = z
   .object({

@@ -1,5 +1,7 @@
 'use client'
 
+import type { Role } from '@saas/auth'
+import type { ComponentProps } from 'react'
 import {
   Select,
   SelectContent,
@@ -7,9 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { ComponentProps } from 'react'
 import { updateMemberAction } from './actions'
-import { Role } from '@saas/auth'
 
 interface IUpdateMemberRoleSelectProps extends ComponentProps<typeof Select> {
   memberId: string
@@ -25,7 +25,7 @@ export const UpdateMemberRoleSelect = ({
 
   return (
     <Select onValueChange={handleUpdateMemberRole} {...props}>
-      <SelectTrigger className="w-32 h-8">
+      <SelectTrigger className="h-8 w-32">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>

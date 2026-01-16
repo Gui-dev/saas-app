@@ -1,12 +1,11 @@
-import { FastifyInstance } from 'fastify'
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { z } from 'zod'
-
-import { makeUpdateOrganization } from '../factories/make-update-organization'
-import { getUserPermissions } from '@/utils/get-user-permissions'
-import { auth } from '@/http/middlewares/auth'
 import { organizationSchema } from '@saas/auth'
+import type { FastifyInstance } from 'fastify'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
+import { z } from 'zod'
 import { UnauthorizedError } from '@/http/_errors/unauthorized-error'
+import { auth } from '@/http/middlewares/auth'
+import { getUserPermissions } from '@/utils/get-user-permissions'
+import { makeUpdateOrganization } from '../factories/make-update-organization'
 
 export const updateOrganization = async (app: FastifyInstance) => {
   app

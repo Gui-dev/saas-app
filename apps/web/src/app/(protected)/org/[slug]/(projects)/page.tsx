@@ -1,8 +1,7 @@
-import { ability, getCurrentOrganization } from '@/auth/auth'
-import { Header } from '@/components/header'
-import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import Link from 'next/link'
+import { ability, getCurrentOrganization } from '@/auth/auth'
+import { Button } from '@/components/ui/button'
 import { ProjectList } from './project-list'
 
 const OrganizationDetails = async () => {
@@ -12,7 +11,7 @@ const OrganizationDetails = async () => {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Projects</h1>
+        <h1 className="font-bold text-2xl">Projects</h1>
         {permissions?.can('create', 'Project') && (
           <Button size="sm" asChild>
             <Link href={`/org/${currentOrg}/create-project`}>
@@ -27,7 +26,7 @@ const OrganizationDetails = async () => {
 
       {permissions?.cannot('get', 'Project') && (
         <div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Você não tem permissão para ver os projetos dessa organização
           </p>
         </div>

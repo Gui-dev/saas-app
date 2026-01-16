@@ -1,8 +1,8 @@
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { FastifyInstance } from 'fastify/types/instance'
+import { rolesSchema } from '@saas/auth'
+import type { FastifyInstance } from 'fastify/types/instance'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
 import { makeGetInvite } from '../factories/make-get-invite'
-import { rolesSchema } from '@saas/auth'
 
 export const getInvite = async (app: FastifyInstance) => {
   app.withTypeProvider<ZodTypeProvider>().get(

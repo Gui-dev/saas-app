@@ -1,4 +1,4 @@
-import { Account } from '@/generated/prisma'
+import type { Account } from '@/generated/prisma'
 
 export interface ICreateAccount {
   userId: string

@@ -1,8 +1,7 @@
 import type { FastifyInstance } from 'fastify'
-
-import { UnauthorizedError } from '../_errors/unauthorized-error'
 import fastifyPlugin from 'fastify-plugin'
 import { prisma } from '@/lib/prisma'
+import { UnauthorizedError } from '../_errors/unauthorized-error'
 
 export const auth = fastifyPlugin(async (app: FastifyInstance) => {
   app.addHook('preHandler', async request => {
@@ -10,7 +9,7 @@ export const auth = fastifyPlugin(async (app: FastifyInstance) => {
       try {
         const { sub } = await request.jwtVerify<{ sub: string }>()
         return sub
-      } catch (error) {
+      } catch (_error) {
         throw new UnauthorizedError('Invalid auth token')
       }
     }

@@ -1,3 +1,7 @@
+import dayjs from 'dayjs'
+import ptBR from 'dayjs/locale/pt-br'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import { ArrowRight } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -7,17 +11,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ArrowRight } from 'lucide-react'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import ptBR from 'dayjs/locale/pt-br'
 
 dayjs.extend(relativeTime)
 dayjs.locale(ptBR)
 
+import { getCurrentOrganization } from '@/auth/auth'
 import { getProjects } from '@/http/get-projects'
 import { getInitialsName } from '@/lib/get-initials-name'
-import { getCurrentOrganization } from '@/auth/auth'
 
 export const ProjectList = async () => {
   const currentOrg = await getCurrentOrganization()
@@ -29,7 +29,7 @@ export const ProjectList = async () => {
         return (
           <Card key={project.id} className="flex flex-col justify-between">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">
+              <CardTitle className="font-semibold text-xl">
                 {project.name}
               </CardTitle>
               <CardDescription className="line-clamp-2 leading-relaxed">
@@ -47,7 +47,7 @@ export const ProjectList = async () => {
                   </AvatarFallback>
                 )}
               </Avatar>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-muted-foreground text-xs">
                 <span className="font-medium text-foreground">
                   {project.owner.name!}
                 </span>{' '}
@@ -56,7 +56,7 @@ export const ProjectList = async () => {
 
               <Button variant="outline" size="xs" className="text-xs">
                 Acessar
-                <ArrowRight className="size-4 ml-2" />
+                <ArrowRight className="ml-2 size-4" />
               </Button>
             </CardFooter>
           </Card>

@@ -1,8 +1,8 @@
+import { XCircle } from 'lucide-react'
+import { redirect } from 'next/navigation'
 import { getCurrentOrganization } from '@/auth/auth'
 import { Button } from '@/components/ui/button'
 import { shutdownOrganization } from '@/http/shutdown-organization'
-import { XCircle } from 'lucide-react'
-import { redirect } from 'next/navigation'
 
 export const ShutdownOrganizationButton = () => {
   const shutdownOrganizationAction = async () => {

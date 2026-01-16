@@ -1,10 +1,7 @@
 import { hash } from 'bcryptjs'
-import type { IOrganizationRepositoryContract } from '@/modules/organization/contracts/organization-repository-contract'
-import type {
-  ICreateUser,
-  IUserRepositoryContract,
-} from '../contracts/user-repository-contract'
 import { BadRequestError } from '@/http/_errors/bad-request-error'
+import type { IOrganizationRepositoryContract } from '@/modules/organization/contracts/organization-repository-contract'
+import type { IUserRepositoryContract } from '../contracts/user-repository-contract'
 
 interface ICreateUserAccountResponse {
   id: string

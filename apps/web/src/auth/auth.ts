@@ -1,8 +1,8 @@
-import { getMembership } from '@/http/get-membership'
-import { getProfile } from '@/http/get-profile'
 import { defineAbilityFor } from '@saas/auth'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { getMembership } from '@/http/get-membership'
+import { getProfile } from '@/http/get-profile'
 
 export const isAuthenticated = async () => {
   const cookieStore = await cookies()
@@ -53,7 +53,7 @@ export const auth = async () => {
   try {
     const { user } = await getProfile()
     return { user }
-  } catch (error) {
+  } catch (_error) {
     redirect('/api/auth/sign-out')
   }
 }

@@ -1,5 +1,5 @@
 import { BadRequestError } from '@/http/_errors/bad-request-error'
-import { IMemberRepositoryContract } from '../contracts/member-repository-contract'
+import type { IMemberRepositoryContract } from '../contracts/member-repository-contract'
 
 export interface IRemoveMemberUseCaseRequest {
   memberId: string

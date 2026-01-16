@@ -1,8 +1,8 @@
-import { auth } from '@/http/middlewares/auth'
 import { rolesSchema } from '@saas/auth'
-import { FastifyInstance } from 'fastify'
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
+import type { FastifyInstance } from 'fastify'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
+import { auth } from '@/http/middlewares/auth'
 
 export const getMembership = async (app: FastifyInstance) => {
   app

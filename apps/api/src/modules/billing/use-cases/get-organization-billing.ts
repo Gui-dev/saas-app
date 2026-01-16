@@ -1,5 +1,5 @@
-import { IMemberRepositoryContract } from '@/modules/members/contracts/member-repository-contract'
-import { IProjectRepositoryContract } from '@/modules/projects/contracts/project-repository-contract'
+import type { IMemberRepositoryContract } from '@/modules/members/contracts/member-repository-contract'
+import type { IProjectRepositoryContract } from '@/modules/projects/contracts/project-repository-contract'
 
 export interface IGetOrganizationBillingUseCaseRequest {
   organizationId: string

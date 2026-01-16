@@ -1,4 +1,4 @@
-import { Prisma, Project } from '@/generated/prisma'
+import type { Prisma, Project } from '@/generated/prisma'
 
 export interface IFindByProjectIdAndOrganizationId {
   projectId: string

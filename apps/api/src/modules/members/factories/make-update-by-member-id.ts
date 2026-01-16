@@ -1,6 +1,6 @@
 import { MemberRepository } from '../repositories/member-repository'
 import {
-  IUpdateByMemberIdUseCaseRequest,
+  type IUpdateByMemberIdUseCaseRequest,
   UpdateByMemberIdUseCase,
 } from '../use-cases/update-by-member-id'
 

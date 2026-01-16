@@ -1,7 +1,7 @@
 import { UserRepository } from '@/modules/users/repositories/user-repository'
 import { InviteRepository } from '../repositories/invite-repository'
 import {
-  IRejectInviteUseCaseRequest,
+  type IRejectInviteUseCaseRequest,
   RejectInviteUseCase,
 } from '../use-case/reject-invite'
 

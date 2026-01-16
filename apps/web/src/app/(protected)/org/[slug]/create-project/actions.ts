@@ -1,9 +1,9 @@
 'use server'
 
-import { z } from 'zod'
 import { HTTPError } from 'ky'
-import { createProject } from '@/http/create-project'
+import { z } from 'zod'
 import { getCurrentOrganization } from '@/auth/auth'
+import { createProject } from '@/http/create-project'
 
 const projectSchema = z.object({
   name: z

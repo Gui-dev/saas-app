@@ -1,4 +1,4 @@
-import { Invite, Prisma } from '@/generated/prisma'
+import type { Invite, Prisma } from '@/generated/prisma'
 
 export type IFindByInviteIdResponse = Prisma.InviteGetPayload<{
   select: {

@@ -1,4 +1,4 @@
-import { FormEvent, useState, useTransition } from 'react'
+import { type FormEvent, useState, useTransition } from 'react'
 import { requestFormReset } from 'react-dom'
 
 export interface IFormState {

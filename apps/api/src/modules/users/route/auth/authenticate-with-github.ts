@@ -1,8 +1,8 @@
-import { FastifyInstance } from 'fastify'
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
+import { env } from '@saas/env'
+import type { FastifyInstance } from 'fastify'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 import { makeAuthenticateWithGithub } from '../../factories/make-authenticate-with-github'
-import { env } from '@saas/env'
 
 export const authenticateWithGithub = (app: FastifyInstance) => {
   app.withTypeProvider<ZodTypeProvider>().post(

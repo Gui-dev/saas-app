@@ -1,18 +1,17 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
 import ptBR from 'dayjs/locale/pt-br'
-
-import { getInvite } from '@/http/get-invite'
-import { getInitialsName } from '@/lib/get-initials-name'
-import { Separator } from '@/components/ui/separator'
-import { auth, isAuthenticated } from '@/auth/auth'
-import { Button } from '@/components/ui/button'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import { CheckCircle, LogIn, LogOut } from 'lucide-react'
 import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-import { acceptInvite } from '@/http/accept-invite'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import { auth, isAuthenticated } from '@/auth/auth'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
+import { acceptInvite } from '@/http/accept-invite'
+import { getInvite } from '@/http/get-invite'
+import { getInitialsName } from '@/lib/get-initials-name'
 
 dayjs.extend(relativeTime)
 dayjs.locale(ptBR)
@@ -51,8 +50,8 @@ const Invites = async ({ params }: IInvitesProps) => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center flex-col">
-      <div className="flex flex-col justify-center w-full max-w-sm space-y-6">
+    <div className="flex min-h-screen flex-col items-center justify-center">
+      <div className="flex w-full max-w-sm flex-col justify-center space-y-6">
         <div className="flex flex-col items-center space-y-4">
           <Avatar className="size-16">
             {invite.author?.avatarUrl && (
@@ -64,16 +63,16 @@ const Invites = async ({ params }: IInvitesProps) => {
               </AvatarFallback>
             )}
           </Avatar>
-          <p className="text-center leading-relaxed text-muted-foreground text-balance">
-            <span className="text-foreground font-medium">
+          <p className="text-balance text-center text-muted-foreground leading-relaxed">
+            <span className="font-medium text-foreground">
               {invite.author?.name ?? 'Alguém'}
             </span>{' '}
             convidou voce para se juntar a{' '}
-            <span className="text-foreground font-medium">
+            <span className="font-medium text-foreground">
               {invite.organization.name}
             </span>
             .{' '}
-            <span className="text-foreground font-medium">
+            <span className="font-medium text-foreground">
               {dayjs(invite.createdAt).fromNow()}
             </span>
           </p>
@@ -107,7 +106,7 @@ const Invites = async ({ params }: IInvitesProps) => {
 
         {isUserAuthenticated && !userIsAuthenticatedWithSameEmailFromInvite && (
           <div className="space-y-4">
-            <p className="text-balance text-center tex-sm text-muted-foreground">
+            <p className="tex-sm text-balance text-center text-muted-foreground">
               Este convite foi enviado para{' '}
               <span className="text-foreground text-medium">
                 {invite.email}

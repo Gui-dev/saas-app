@@ -1,5 +1,5 @@
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { FastifyInstance } from 'fastify/types/instance'
+import type { FastifyInstance } from 'fastify/types/instance'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
 
 import { auth } from '@/http/middlewares/auth'

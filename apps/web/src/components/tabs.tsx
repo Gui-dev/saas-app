@@ -1,7 +1,6 @@
-import Link from 'next/link'
-import { Button } from './ui/button'
 import { ability, getCurrentOrganization } from '@/auth/auth'
 import { NavLink } from './nav-links'
+import { Button } from './ui/button'
 
 export const Tabs = async () => {
   const currentOrg = await getCurrentOrganization()
@@ -18,7 +17,7 @@ export const Tabs = async () => {
           <Button
             variant="ghost"
             size="sm"
-            className="border border-transparent text-muted-foreground data-[current=true]:text-foreground data-[current=true]:border-input"
+            className="border border-transparent text-muted-foreground data-[current=true]:border-input data-[current=true]:text-foreground"
             asChild
           >
             <NavLink href={`/org/${currentOrg}`}>Projects</NavLink>
@@ -29,7 +28,7 @@ export const Tabs = async () => {
           <Button
             variant="ghost"
             size="sm"
-            className="border border-transparent text-muted-foreground data-[current=true]:text-foreground data-[current=true]:border-input"
+            className="border border-transparent text-muted-foreground data-[current=true]:border-input data-[current=true]:text-foreground"
             asChild
           >
             <NavLink href={`/org/${currentOrg}/members`}>Members</NavLink>
@@ -40,7 +39,7 @@ export const Tabs = async () => {
           <Button
             variant="ghost"
             size="sm"
-            className="border border-transparent text-muted-foreground data-[current=true]:text-foreground data-[current=true]:border-input"
+            className="border border-transparent text-muted-foreground data-[current=true]:border-input data-[current=true]:text-foreground"
             asChild
           >
             <NavLink href={`/org/${currentOrg}/settings`}>

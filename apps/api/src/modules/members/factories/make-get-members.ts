@@ -1,7 +1,7 @@
 import { MemberRepository } from '../repositories/member-repository'
 import {
   GetMembersUseCase,
-  IGetMembersUseCaseRequest,
+  type IGetMembersUseCaseRequest,
 } from '../use-cases/get-members'
 
 export const makeGetMembers = async ({

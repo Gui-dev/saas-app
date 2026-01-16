@@ -1,9 +1,7 @@
-import { BadRequestError } from '@/http/_errors/bad-request-error'
-import {
+import type {
   IFindAllProjectsByOrganizationIdResponse,
   IProjectRepositoryContract,
 } from '../contracts/project-repository-contract'
-import { Project } from '@/generated/prisma'
 
 export interface IGetProjectsUseCaseRequest {
   organizationId: string

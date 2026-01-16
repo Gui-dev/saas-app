@@ -1,8 +1,8 @@
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
-import { makeGetProfile } from '../../factories/make-get-profile'
 import { auth } from '@/http/middlewares/auth'
+import { makeGetProfile } from '../../factories/make-get-profile'
 
 export const getProfile = (app: FastifyInstance) => {
   app

@@ -1,7 +1,7 @@
 import { OrganizationRepository } from '../repositories/organization-repository'
 import {
   GetOrganizationsUseCase,
-  IGetOrganizationsUseCaseRequest,
+  type IGetOrganizationsUseCaseRequest,
 } from '../use-cases/get-organizations'
 
 export const makeGetOrganizations = async ({

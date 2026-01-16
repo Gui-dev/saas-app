@@ -1,5 +1,5 @@
-import { app } from '@/http/server'
 import { env } from '@saas/env'
+import { app } from '@/http/server'
 
 const PORT = env.PORT
 

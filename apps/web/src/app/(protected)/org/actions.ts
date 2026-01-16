@@ -1,12 +1,11 @@
 'use server'
 
-import { z } from 'zod'
 import { HTTPError } from 'ky'
-import { createOrganization } from '@/http/create-organization'
-import { organizationSchema } from './organization-schema'
-import { getCurrentOrganization } from '@/auth/auth'
-import { updateOrganization } from '@/http/update-organization'
 import { revalidateTag } from 'next/cache'
+import { getCurrentOrganization } from '@/auth/auth'
+import { createOrganization } from '@/http/create-organization'
+import { updateOrganization } from '@/http/update-organization'
+import { organizationSchema } from './organization-schema'
 
 export const createOrganizationAction = async (data: FormData) => {
   const result = organizationSchema.safeParse(Object.fromEntries(data))

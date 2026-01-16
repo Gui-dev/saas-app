@@ -1,4 +1,4 @@
-import { IOrganizationRepositoryContract } from '../contracts/organization-repository-contract'
+import type { IOrganizationRepositoryContract } from '../contracts/organization-repository-contract'
 
 export interface IShutdownOrganizationUseCaseRequest {
   organizationId: string

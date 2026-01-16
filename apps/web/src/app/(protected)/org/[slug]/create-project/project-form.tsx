@@ -1,16 +1,15 @@
 'use client'
 
 import { AlertTriangle, Loader2 } from 'lucide-react'
-
+import { useParams } from 'next/navigation'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useFormState } from '@/hooks/use-form-state'
-import { createProjectAction } from './actions'
 import { Textarea } from '@/components/ui/textarea'
-import { useParams } from 'next/navigation'
+import { useFormState } from '@/hooks/use-form-state'
 import { queryClient } from '@/lib/react-query'
+import { createProjectAction } from './actions'
 
 export const ProjectForm = () => {
   const { slug: org } = useParams<{ slug: string }>()
@@ -54,7 +53,7 @@ export const ProjectForm = () => {
           placeholder="Digite o nome do seu projeto"
         />
         {errors?.name && (
-          <p className="text-xs font-medium text-red-500 dark:text-red-400">
+          <p className="font-medium text-red-500 text-xs dark:text-red-400">
             {errors.name[0]}
           </p>
         )}
@@ -68,7 +67,7 @@ export const ProjectForm = () => {
           placeholder="Digite uma descrição do seu projeto"
         />
         {errors?.description && (
-          <p className="text-xs font-medium text-red-500 dark:text-red-400">
+          <p className="font-medium text-red-500 text-xs dark:text-red-400">
             {errors.description[0]}
           </p>
         )}

@@ -1,6 +1,6 @@
 import { OrganizationRepository } from '../repositories/organization-repository'
 import {
-  IShutdownOrganizationUseCaseRequest,
+  type IShutdownOrganizationUseCaseRequest,
   ShutdownOrganizationUseCase,
 } from '../use-cases/shutdown-organization'
 

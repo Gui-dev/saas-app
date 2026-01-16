@@ -1,6 +1,6 @@
+import type { Project } from '@/generated/prisma'
 import { BadRequestError } from '@/http/_errors/bad-request-error'
-import { IProjectRepositoryContract } from '../contracts/project-repository-contract'
-import { Project } from '@/generated/prisma'
+import type { IProjectRepositoryContract } from '../contracts/project-repository-contract'
 
 export interface IGetProjectByIdAndOrganizationIdRequest {
   projectId: string
