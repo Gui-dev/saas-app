@@ -31,6 +31,14 @@ export class InMemoryTokenRepository implements ITokenRepositoryContract {
     return newToken
   }
 
+  public async delete(tokenId: string): Promise<void> {
+    const tokenIndex = this.items.findIndex(item => item.id === tokenId)
+
+    if (tokenIndex !== -1) {
+      this.items.splice(tokenIndex, 1)
+    }
+  }
+
   public getItems(): Token[] {
     return this.items
   }

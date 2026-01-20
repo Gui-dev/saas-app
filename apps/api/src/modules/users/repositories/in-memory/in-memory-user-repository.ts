@@ -65,7 +65,11 @@ export class InMemoryUserRepository implements IUserRepositoryContract {
     return newUser
   }
 
-  public async update({ userId, data }: IUpdateUser): Promise<User | null> {
+  public async update({
+    code,
+    userId,
+    data,
+  }: IUpdateUser): Promise<User | null> {
     const userIndex = this.items.findIndex(user => user.id === userId)
 
     if (userIndex === -1) {
@@ -81,6 +85,10 @@ export class InMemoryUserRepository implements IUserRepositoryContract {
     } as FullUser
 
     this.items[userIndex] = updatedUser
+
+    // Note: In the real UserRepository, this method also deletes a token with the given code
+    // using prisma.$transaction. For the in-memory version, we focus on the user update
+    // and the token deletion would be handled separately if needed.
 
     return updatedUser
   }
