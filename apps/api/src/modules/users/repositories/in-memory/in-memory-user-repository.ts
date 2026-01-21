@@ -9,7 +9,7 @@ import type {
 } from '../../contracts/user-repository-contract'
 
 type FullUser = User & {
-  passwordHash: string
+  passwordHash: string | null
   member_on?: { organizationId: string; role: 'MEMBER' }[] // Simula a relação many-to-many
 }
 
@@ -51,7 +51,7 @@ export class InMemoryUserRepository implements IUserRepositoryContract {
       id: randomUUID(),
       name: name ?? '',
       email: email,
-      passwordHash: password ?? '',
+      passwordHash: password ?? null,
       createdAt: new Date(),
       updatedAt: new Date(),
       avatarUrl: '',
