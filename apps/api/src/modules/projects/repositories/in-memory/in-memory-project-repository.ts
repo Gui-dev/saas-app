@@ -141,6 +141,10 @@ export class InMemoryProjectRepository implements IProjectRepositoryContract {
       .length
   }
 
+  public setItems(items: Project[]) {
+    this.items = items
+  }
+
   public getItems(): Project[] {
     return this.items
   }
