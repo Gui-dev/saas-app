@@ -29,7 +29,7 @@ export class TransferOrganizationUseCase {
       )
     }
 
-    await this.memberRepository.update({
+    await this.memberRepository.updateByUserId({
       organizationId,
       userId: transferToUserId,
       data: {
