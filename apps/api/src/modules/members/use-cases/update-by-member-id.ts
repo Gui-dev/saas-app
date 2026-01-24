@@ -15,20 +15,23 @@ export class UpdateByMemberIdUseCase {
     organizationId,
     role,
   }: IUpdateByMemberIdUseCaseRequest) {
-    const member = await this.memberRepository.updateByMemberId({
-      memberId,
-      organizationId,
-      data: {
-        role,
-      },
-    })
+    try {
+      const member = await this.memberRepository.updateByMemberId({
+        memberId,
+        organizationId,
+        data: {
+          role,
+        },
+      })
 
-    if (!member) {
-      throw new BadRequestError('Member not found')
-    }
-
-    return {
-      memberId: member.id,
+      return {
+        memberId: member.id,
+      }
+    } catch (error) {
+      if (error instanceof Error && error.message === 'Member not found') {
+        throw new BadRequestError('Member not found')
+      }
+      throw error
     }
   }
 }
