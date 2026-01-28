@@ -15,6 +15,24 @@
     "indentStyle": "space",
     "indentWidth": 2
   },
+  "overrides": [
+    {
+      "includes": [
+        "src/**/__tests__/**",
+        "src/**/*.test.ts",
+        "src/**/*.spec.ts",
+        "src/**/*.test.tsx",
+        "src/**/*.spec.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    }
+  ],
   "linter": {
     "enabled": true,
     "rules": {
