@@ -108,8 +108,10 @@ export class InMemoryProjectRepository implements IProjectRepositoryContract {
     return newProject
   }
 
-  public async delete({ projectId }: IDeleteProject): Promise<void> {
-    const projectIndex = this.items.findIndex(item => item.id === projectId)
+  public async delete({ projectId, ownerId }: IDeleteProject): Promise<void> {
+    const projectIndex = this.items.findIndex(
+      item => item.id === projectId && item.ownerId === ownerId
+    )
 
     if (projectIndex !== -1) {
       this.items.splice(projectIndex, 1)

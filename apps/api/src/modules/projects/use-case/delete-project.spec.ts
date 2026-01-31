@@ -31,7 +31,7 @@ describe('DeleteProjectUseCase', () => {
       updatedAt: new Date(),
     }
 
-    projectRepository.setItems(createdProject)
+    projectRepository.setItems([createdProject])
 
     await sut.execute({ projectId, ownerId })
 
@@ -45,7 +45,7 @@ describe('DeleteProjectUseCase', () => {
     await expect(sut.execute({ projectId, ownerId })).resolves.not.toThrow()
   })
 
-  it('should delete project even with different ownerId passed (repository handles authorization)', async () => {
+  it('should not delete project with different ownerId (authorization)', async () => {
     const projectId = randomUUID()
     const ownerId = randomUUID()
     const differentOwnerId = randomUUID()
@@ -63,10 +63,10 @@ describe('DeleteProjectUseCase', () => {
       updatedAt: new Date(),
     }
 
-    projectRepository.setItems(createdProject)
+    projectRepository.setItems([createdProject])
 
     await sut.execute({ projectId, ownerId: differentOwnerId })
 
-    expect(projectRepository.getItems()).toHaveLength(0)
+    expect(projectRepository.getItems()).toHaveLength(1)
   })
 })
