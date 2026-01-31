@@ -1,3 +1,9 @@
+import { render, screen, waitFor } from '@testing-library/react'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { getCurrentOrganization } from '@/auth/auth'
+import { getOrganizations } from '@/http/get-organizations'
+import { OrganizationSwitcher } from './organization-switcher'
+
 vi.mock('next/link', () => ({
   default: vi.fn(({ children, href }) => <a href={href}>{children}</a>),
 }))
@@ -39,13 +45,6 @@ vi.mock('./ui/dropdown-menu', () => ({
   )),
   DropdownMenuSeparator: vi.fn(() => <div className="dropdown-separator" />),
 }))
-
-import { render, screen, waitFor } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { OrganizationSwitcher } from './organization-switcher'
-
-const { getCurrentOrganization } = await import('@/auth/auth')
-const { getOrganizations } = await import('@/http/get-organizations')
 
 describe('<OrganizationSwitcher />', () => {
   beforeEach(() => {
