@@ -1,7 +1,6 @@
 'use client'
 
 import { AlertTriangle, Loader2, UserPlus } from 'lucide-react'
-import { useParams } from 'next/navigation'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -16,7 +15,6 @@ import { useFormState } from '@/hooks/use-form-state'
 import { createInviteAction } from './actions'
 
 export const CreateInviteForm = () => {
-  const { slug: org } = useParams<{ slug: string }>()
   const [{ success, message, errors }, handleSubmit, isPending] =
     useFormState(createInviteAction)
 
