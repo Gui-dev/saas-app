@@ -1,20 +1,32 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-vi.mock('./sign-up', () => ({
-  signUp: vi.fn(),
+// Mock @saas/env before importing
+vi.mock('@saas/env', () => ({
+  env: {
+    NEXT_PUBLIC_API_URL: 'http://localhost:3333',
+  },
 }))
 
-import { signUp } from './sign-up'
+// Mock api-client
+const mockPost = vi.fn()
+vi.mock('./api-client', () => ({
+  api: {
+    post: (...args: unknown[]) => mockPost(...args),
+  },
+}))
 
-const mockSignUp = vi.mocked(signUp)
+// Import after mocks
+import { signUp } from './sign-up'
 
 describe('signUp', () => {
   beforeEach(() => {
-    vi.clearAllMocks()
+    vi.resetAllMocks()
   })
 
   it('should return user id on successful sign up', async () => {
-    mockSignUp.mockResolvedValueOnce({ id: 'mock-user-id' })
+    mockPost.mockReturnValue({
+      json: vi.fn().mockResolvedValue({ id: 'mock-user-id' }),
+    })
 
     const result = await signUp({
       name: 'Test User',
@@ -23,15 +35,19 @@ describe('signUp', () => {
     })
 
     expect(result).toEqual({ id: 'mock-user-id' })
-    expect(mockSignUp).toHaveBeenCalledWith({
-      name: 'Test User',
-      email: 'test@example.com',
-      password: 'password123',
+    expect(mockPost).toHaveBeenCalledWith('users', {
+      json: {
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'password123',
+      },
     })
   })
 
   it('should call POST /users with correct data', async () => {
-    mockSignUp.mockResolvedValueOnce({ id: 'user-id' })
+    mockPost.mockReturnValue({
+      json: vi.fn().mockResolvedValue({ id: 'user-id' }),
+    })
 
     const result = await signUp({
       name: 'User Name',
@@ -40,15 +56,19 @@ describe('signUp', () => {
     })
 
     expect(result).toHaveProperty('id')
-    expect(mockSignUp).toHaveBeenCalledWith({
-      name: 'User Name',
-      email: 'user@example.com',
-      password: 'secure-password',
+    expect(mockPost).toHaveBeenCalledWith('users', {
+      json: {
+        name: 'User Name',
+        email: 'user@example.com',
+        password: 'secure-password',
+      },
     })
   })
 
   it('should return user id with correct structure', async () => {
-    mockSignUp.mockResolvedValueOnce({ id: 'admin-id' })
+    mockPost.mockReturnValue({
+      json: vi.fn().mockResolvedValue({ id: 'admin-id' }),
+    })
 
     const result = await signUp({
       name: 'Admin User',
@@ -61,7 +81,9 @@ describe('signUp', () => {
   })
 
   it('should throw error on invalid data', async () => {
-    mockSignUp.mockRejectedValueOnce(new Error('Invalid data'))
+    mockPost.mockReturnValue({
+      json: vi.fn().mockRejectedValue(new Error('Invalid data')),
+    })
 
     await expect(
       signUp({

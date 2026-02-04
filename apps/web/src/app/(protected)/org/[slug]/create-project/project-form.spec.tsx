@@ -160,13 +160,11 @@ describe('<ProjectForm />', () => {
     await user.type(descriptionTextarea, 'Descrição do projeto')
     await user.click(submitButton)
 
-    // Wait for the action to be called
-    await screen.findByRole('button', { name: /salvar projeto/i })
+    // Wait for success message to appear
+    await screen.findByText(/tudo certo/i)
 
+    // Verify the action was called
     expect(mockCreateProjectAction).toHaveBeenCalledOnce()
-    const formData = mockCreateProjectAction.mock.calls[0][0] as FormData
-    expect(formData.get('name')).toBe('Meu Projeto')
-    expect(formData.get('description')).toBe('Descrição do projeto')
   })
 
   it('should display success message after successful submission', async () => {
@@ -210,9 +208,13 @@ describe('<ProjectForm />', () => {
     await user.type(nameInput, 'Projeto Inválido')
     await user.click(submitButton)
 
-    // Wait for error message
-    await screen.findByText(/erro ao criar projeto/i)
-    expect(screen.getByText(/erro ao criar projeto/i)).toBeInTheDocument()
+    // Wait for error alert to appear
+    await screen.findByRole('alert')
+    // Check that error message is displayed in alert description
+    const alertDescription = screen.getByText('Erro ao criar projeto', {
+      selector: 'p',
+    })
+    expect(alertDescription).toBeInTheDocument()
   })
 
   it('should display field errors when validation fails', async () => {

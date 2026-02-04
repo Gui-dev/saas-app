@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-// Mock @saas/env before importing createInvite
+// Mock @saas/env before importing acceptInvite
 vi.mock('@saas/env', () => ({
   env: {
     NEXT_PUBLIC_API_URL: 'http://localhost:3333',
@@ -15,10 +15,10 @@ vi.mock('./api-client', () => ({
   },
 }))
 
-// Import createInvite after mocks
-import { createInvite } from './create-invite'
+// Import acceptInvite after mocks
+import { acceptInvite } from './accept-invite'
 
-describe('createInvite', () => {
+describe('acceptInvite', () => {
   afterEach(() => {
     vi.clearAllMocks()
   })
@@ -27,37 +27,28 @@ describe('createInvite', () => {
     vi.resetAllMocks()
   })
 
-  it('should return invite id on successful creation', async () => {
+  it('should return invite id on successful acceptance', async () => {
     mockPost.mockReturnValue({
       json: vi.fn().mockResolvedValue({ id: 'invite-123' }),
     })
 
-    const result = await createInvite({
-      org: 'org-123',
-      email: 'user@example.com',
-      role: 'MEMBER',
+    const result = await acceptInvite({
+      inviteId: 'invite-123',
     })
 
     expect(result).toEqual({ id: 'invite-123' })
   })
 
-  it('should call POST organizations/org_id/invites with correct data', async () => {
+  it('should call POST invites/:inviteId/accept with correct inviteId', async () => {
     mockPost.mockReturnValue({
       json: vi.fn().mockResolvedValue({ id: 'invite-456' }),
     })
 
-    await createInvite({
-      org: 'my-org',
-      email: 'newuser@test.com',
-      role: 'ADMIN',
+    await acceptInvite({
+      inviteId: 'invite-456',
     })
 
-    expect(mockPost).toHaveBeenCalledWith('organizations/my-org/invites', {
-      json: {
-        email: 'newuser@test.com',
-        role: 'ADMIN',
-      },
-    })
+    expect(mockPost).toHaveBeenCalledWith('invites/invite-456/accept')
   })
 
   it('should return invite id with correct structure', async () => {
@@ -65,10 +56,8 @@ describe('createInvite', () => {
       json: vi.fn().mockResolvedValue({ id: 'invite-789' }),
     })
 
-    const result = await createInvite({
-      org: 'org-test',
-      email: 'billing@test.com',
-      role: 'BILLING',
+    const result = await acceptInvite({
+      inviteId: 'invite-789',
     })
 
     expect(result).toHaveProperty('id')
@@ -82,10 +71,8 @@ describe('createInvite', () => {
     })
 
     await expect(
-      createInvite({
-        org: 'invalid-org',
-        email: 'wrong@test.com',
-        role: 'MEMBER',
+      acceptInvite({
+        inviteId: 'invalid-invite',
       })
     ).rejects.toThrow()
   })

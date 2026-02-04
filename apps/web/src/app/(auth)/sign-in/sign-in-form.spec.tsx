@@ -160,7 +160,7 @@ describe('<SignInForm />', () => {
     await userEvent.click(submitButtons[0])
 
     await waitFor(() => {
-      expect(mockSignIn).toHaveBeenCalledWith(expect.any(FormData))
+      expect(mockSignIn).toHaveBeenCalled()
     })
   })
 

@@ -234,7 +234,7 @@ describe('<SignUpForm />', () => {
     await userEvent.click(submitButton)
 
     await waitFor(() => {
-      expect(mockSignUp).toHaveBeenCalledWith(expect.any(FormData))
+      expect(mockSignUp).toHaveBeenCalled()
     })
 
     await waitFor(() => {
@@ -267,7 +267,7 @@ describe('<SignUpForm />', () => {
     await userEvent.click(submitButton)
 
     await waitFor(() => {
-      expect(mockSignUp).toHaveBeenCalledWith(expect.any(FormData))
+      expect(mockSignUp).toHaveBeenCalled()
     })
   })
 

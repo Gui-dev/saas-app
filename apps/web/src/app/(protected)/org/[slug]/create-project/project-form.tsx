@@ -60,7 +60,7 @@ export const ProjectForm = () => {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="domain">Descrição</Label>
+        <Label htmlFor="description">Descrição</Label>
         <Textarea
           name="description"
           id="description"
