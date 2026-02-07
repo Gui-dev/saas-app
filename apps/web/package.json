@@ -9,7 +9,9 @@
     "lint": "biome check",
     "format": "biome format --write",
     "env:load": "dotenv -e ../../.env --",
-    "test": "vitest"
+    "test": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
