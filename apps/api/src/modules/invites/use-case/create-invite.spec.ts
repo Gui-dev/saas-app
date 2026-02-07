@@ -76,7 +76,7 @@ describe('CreateInviteUseCase', () => {
         avatarUrl: '',
       },
     }
-    memberRepository.setItems(member)
+    memberRepository.setItems([member])
 
     // Act & Assert
     await expect(

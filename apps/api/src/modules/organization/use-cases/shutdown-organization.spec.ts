@@ -69,4 +69,3 @@ describe('ShutdownOrganizationUseCase', () => {
     expect(organizations[0].name).toBe('Organization 2')
   })
 })
-

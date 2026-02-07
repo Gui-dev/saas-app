@@ -34,7 +34,7 @@ describe('RemoveMemberUseCase', () => {
       },
     }
 
-    memberRepository.setItems(member)
+    memberRepository.setItems([member])
 
     // Act
     await sut.execute({ memberId, organizationId })

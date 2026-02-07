@@ -46,7 +46,7 @@ describe('TransferOrganizationUseCase', () => {
         avatarUrl: '',
       },
     }
-    memberRepository.setItems(member)
+    memberRepository.setItems([member])
 
     // Act
     await sut.execute({
@@ -113,7 +113,7 @@ describe('TransferOrganizationUseCase', () => {
         avatarUrl: '',
       },
     }
-    memberRepository.setItems(member)
+    memberRepository.setItems([member])
 
     // Act
     await sut.execute({

@@ -32,14 +32,14 @@ describe('AcceptInviteUseCase', () => {
     })
 
     // Create a user with matching email
-    await userRepository.create({
+    const createdUser = await userRepository.create({
       name: 'Test User',
       email,
       password: 'password123',
     })
 
     // Act
-    await sut.execute({ inviteId: createdInvite.id, userId })
+    await sut.execute({ inviteId: createdInvite.id, userId: createdUser.id })
 
     // Assert
     // The invite should be removed from the repository
@@ -94,7 +94,7 @@ describe('AcceptInviteUseCase', () => {
     })
 
     // Create a user with different email
-    await userRepository.create({
+    const createdUser = await userRepository.create({
       name: 'Test User',
       email: 'user@example.com',
       password: 'password123',
@@ -102,7 +102,7 @@ describe('AcceptInviteUseCase', () => {
 
     // Act & Assert
     await expect(
-      sut.execute({ inviteId: createdInvite.id, userId })
+      sut.execute({ inviteId: createdInvite.id, userId: createdUser.id })
     ).rejects.toThrow(BadRequestError)
   })
 
@@ -122,14 +122,14 @@ describe('AcceptInviteUseCase', () => {
     })
 
     // Create a user with exact matching email
-    await userRepository.create({
+    const createdUser = await userRepository.create({
       name: 'Test User',
       email,
       password: 'password123',
     })
 
     // Act
-    await sut.execute({ inviteId: createdInvite.id, userId })
+    await sut.execute({ inviteId: createdInvite.id, userId: createdUser.id })
 
     // Assert
     const invites = inviteRepository.getItems()

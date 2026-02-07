@@ -30,7 +30,7 @@ describe('GetProjectByIdAndOrganizationIdUseCase', () => {
       updatedAt: new Date(),
     }
 
-    projectRepository.setItems(createdProject)
+    projectRepository.setItems([createdProject])
 
     const result = await sut.execute({
       projectId,
@@ -70,7 +70,7 @@ describe('GetProjectByIdAndOrganizationIdUseCase', () => {
       updatedAt: new Date(),
     }
 
-    projectRepository.setItems(createdProject)
+    projectRepository.setItems([createdProject])
 
     await expect(
       sut.execute({

@@ -31,7 +31,7 @@ describe('UpdateProjectUseCase', () => {
       updatedAt: new Date(),
     }
 
-    projectRepository.setItems(createdProject)
+    projectRepository.setItems([createdProject])
 
     const result = await sut.execute({
       userId: ownerId,
@@ -79,7 +79,7 @@ describe('UpdateProjectUseCase', () => {
       updatedAt: new Date(),
     }
 
-    projectRepository.setItems(createdProject)
+    projectRepository.setItems([createdProject])
 
     const result = await sut.execute({
       userId: differentUserId,

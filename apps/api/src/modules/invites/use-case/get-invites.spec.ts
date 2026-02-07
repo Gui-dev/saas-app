@@ -57,7 +57,9 @@ describe('GetInvitesUseCase', () => {
     const nonExistentOrganizationId = randomUUID()
 
     // Act
-    const result = await sut.execute({ organizationId: nonExistentOrganizationId })
+    const result = await sut.execute({
+      organizationId: nonExistentOrganizationId,
+    })
 
     // Assert
     expect(result.invites).toHaveLength(0)
@@ -114,4 +116,3 @@ describe('GetInvitesUseCase', () => {
     expect(result.invites[0].createdAt).toBeInstanceOf(Date)
   })
 })
-

@@ -13,7 +13,9 @@ import type {
 export class InMemoryInviteRepository implements IInviteRepositoryContract {
   private items: Invite[] = []
 
-  public async findByInviteId(inviteId: string): Promise<IFindByInviteIdResponse | null> {
+  public async findByInviteId(
+    inviteId: string
+  ): Promise<IFindByInviteIdResponse | null> {
     const invite = this.items.find(item => item.id === inviteId)
 
     if (!invite) {
@@ -55,7 +57,9 @@ export class InMemoryInviteRepository implements IInviteRepositoryContract {
   public async findByOrganizationId(
     organizationId: string
   ): Promise<IFindByOrganizationIdResponse[]> {
-    const invites = this.items.filter(item => item.organizationId === organizationId)
+    const invites = this.items.filter(
+      item => item.organizationId === organizationId
+    )
 
     return invites.map(invite => ({
       id: invite.id,
@@ -69,7 +73,9 @@ export class InMemoryInviteRepository implements IInviteRepositoryContract {
     }))
   }
 
-  public async findByUserEmail(email: string): Promise<IFindByUserEmailResponse[]> {
+  public async findByUserEmail(
+    email: string
+  ): Promise<IFindByUserEmailResponse[]> {
     const invites = this.items.filter(item => item.email === email)
 
     return invites.map(invite => ({
@@ -129,4 +135,3 @@ export class InMemoryInviteRepository implements IInviteRepositoryContract {
     this.items = items
   }
 }
-

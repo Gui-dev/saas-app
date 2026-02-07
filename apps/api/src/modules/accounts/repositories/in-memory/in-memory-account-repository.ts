@@ -19,7 +19,11 @@ export class InMemoryAccountRepository implements IAccountRepositoryContract {
     return account
   }
 
-  public async create({ userId, provider, providerAccountId }: ICreateAccount): Promise<Account> {
+  public async create({
+    userId,
+    provider,
+    providerAccountId,
+  }: ICreateAccount): Promise<Account> {
     const newAccount: Account = {
       id: randomUUID(),
       userId,
@@ -40,4 +44,3 @@ export class InMemoryAccountRepository implements IAccountRepositoryContract {
     this.items = items
   }
 }
-

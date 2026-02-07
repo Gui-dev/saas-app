@@ -22,7 +22,7 @@ describe('GetPendingInvitesUseCase', () => {
     const email = 'test@example.com'
 
     // Create a user
-    await userRepository.create({
+    const createdUser = await userRepository.create({
       name: 'Test User',
       email,
       password: 'password123',
@@ -44,7 +44,7 @@ describe('GetPendingInvitesUseCase', () => {
     })
 
     // Act
-    const result = await sut.execute({ userId })
+    const result = await sut.execute({ userId: createdUser.id })
 
     // Assert
     expect(result.invites).toHaveLength(2)
@@ -58,14 +58,14 @@ describe('GetPendingInvitesUseCase', () => {
     const email = 'test@example.com'
 
     // Create a user
-    await userRepository.create({
+    const createdUser = await userRepository.create({
       name: 'Test User',
       email,
       password: 'password123',
     })
 
     // Act
-    const result = await sut.execute({ userId })
+    const result = await sut.execute({ userId: createdUser.id })
 
     // Assert
     expect(result.invites).toHaveLength(0)
@@ -87,7 +87,7 @@ describe('GetPendingInvitesUseCase', () => {
     const _userId2 = randomUUID()
 
     // Create first user
-    await userRepository.create({
+    const createdUser1 = await userRepository.create({
       name: 'User 1',
       email: 'user1@example.com',
       password: 'password123',
@@ -117,7 +117,7 @@ describe('GetPendingInvitesUseCase', () => {
     })
 
     // Act - Get invites for first user only
-    const result = await sut.execute({ userId: userId1 })
+    const result = await sut.execute({ userId: createdUser1.id })
 
     // Assert
     expect(result.invites).toHaveLength(1)
@@ -132,7 +132,7 @@ describe('GetPendingInvitesUseCase', () => {
     const authorId = randomUUID()
 
     // Create a user
-    await userRepository.create({
+    const createdUser = await userRepository.create({
       name: 'Test User',
       email,
       password: 'password123',
@@ -147,7 +147,7 @@ describe('GetPendingInvitesUseCase', () => {
     })
 
     // Act
-    const result = await sut.execute({ userId })
+    const result = await sut.execute({ userId: createdUser.id })
 
     // Assert
     expect(result.invites).toHaveLength(1)

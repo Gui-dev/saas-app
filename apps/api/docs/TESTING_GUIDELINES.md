@@ -7,7 +7,7 @@
 - **Mocks:** Use mocks apenas para dependências externas (Gateways de pagamento, APIs de terceiros).
 
 ## Nomenclatura e Diretório
-**Localização:** Os repositorios in memory devem ficar na pasta `src/modules/**/repositories/in-memory/**`.
+**Localização:** Os repositorios in memory devem ficar na pasta `src/modules/**/repositories/in-memory/**`, nomeie o arquivo `in-memory-<nome-do-repositorio>.ts`.
 - **Localização:** Os testes devem ficar na pasta `src/modules/**/use-cases/**` junto ao arquivo testado com a extensão `.spec.ts`. Caso um teste já exista, implemente só o que achar necessário conforme a lógica do use case em questão.
 - **Arquivos:** Nomeie como `nome-do-servico.spec.ts`.
 - **Descrição:** Use o padrão `describe('Nome do Serviço')` e `it('should...')` em inglês.
@@ -21,3 +21,5 @@ Siga rigorosamente a estrutura:
 ## Exemplo de Estrutura Esperada
 - Criar uma classe `InMemory[Entity]Repository` que implementa a interface do repositório real usando um array interno. Caso a classe já exista implemente só métodos que faltam implemntar, caso precise.
 - Instanciar o repositório no `beforeEach`.
+- Use sempre o Vitest para os testes unitários.
+
