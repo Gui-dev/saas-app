@@ -11,12 +11,12 @@ export const organizationSchema = z
       .refine(
         value => {
           if (value) {
-            const domainRegex = /^[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/ // Regex para verificar se o dominio e valido
+            const domainRegex = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ // Regex para verificar se o dominio e valido
             return domainRegex.test(value)
           }
           return true
         },
-        { message: 'Por favor, forneça um dominio valido' }
+        { message: 'Por favor, forneça um domínio válido' }
       ),
     shouldAttachUsersByDomain: z
       .union([z.literal('on'), z.literal('off'), z.boolean()])
@@ -33,7 +33,7 @@ export const organizationSchema = z
     },
     {
       message:
-        'Por favor, forneça um dominio valido quando adicionar membros automaticamente',
+        'Por favor, forneça um domínio válido quando adicionar membros automaticamente',
       path: ['domain'],
     }
   )

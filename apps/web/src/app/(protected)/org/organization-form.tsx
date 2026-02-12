@@ -49,12 +49,12 @@ export const OrganizationForm = ({
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="name">Nome da organizacao</Label>
+        <Label htmlFor="name">Nome da organização</Label>
         <Input
           type="text"
           name="name"
           id="name"
-          placeholder="Digite seu nome"
+          placeholder="Digite o nome da organização"
           defaultValue={initialData?.name}
         />
         {errors?.name && (
@@ -89,7 +89,7 @@ export const OrganizationForm = ({
             className="translate-y-0.5"
             defaultChecked={initialData?.shouldAttachUsersByDomain}
           />
-          <label htmlFor="shouldAttchUsersByDomain" className="space-y-1">
+          <label htmlFor="shouldAttachUsersByDomain" className="space-y-1">
             <span className="font-medium text-sm leading-none">
               Adicionar novos membros automaticamente
             </span>
