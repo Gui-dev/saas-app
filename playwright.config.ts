@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test'
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './src',
+  testDir: './apps/web/src',
   testMatch: /\.e2e\.spec\.ts$/,
   testIgnore: /(?<!\.e2e)\.spec\.ts$/,
   /* Run tests in files in parallel */
@@ -36,9 +36,24 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // Setup project for authentication
+    {
+      name: 'setup',
+      testMatch: /.*\.setup\.ts/,
+    },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['setup'],
+    },
+    {
+      name: 'chromium-no-auth',
+      use: {
+        ...devices['Desktop Chrome'],
+        // No authentication required
+      },
     },
 
     // {
@@ -73,9 +88,24 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'pnpm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: [
+    // {
+    //   command: 'pnpm run dev',
+    //   url: 'http://localhost:3000',
+    //   reuseExistingServer: !process.env.CI,
+    //   timeout: 180000,
+    // },
+
+    {
+      // Em vez de 'pnpm dev' (que chama o turbo), use:
+      command: 'pnpm --filter @saas/web dev',
+      port: 3000,
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      command: 'pnpm --filter @saas/api dev',
+      port: 3333,
+      reuseExistingServer: !process.env.CI,
+    },
+  ],
 })
