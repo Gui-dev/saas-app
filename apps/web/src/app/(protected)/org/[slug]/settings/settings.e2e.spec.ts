@@ -175,4 +175,65 @@ test.describe('Organization Settings Page', () => {
     // Check loading spinner
     await expect(page.locator('svg.animate-spin')).toBeVisible()
   })
+
+  test('should delete organization and redirect to home', async ({ page }) => {
+    const uniqueId = Date.now()
+    const orgName = `Delete Test Org ${uniqueId}`
+    const domain = `deletetest${uniqueId}.com`
+
+    // Create organization
+    const org = await createOrganization(page, orgName, domain)
+
+    // Navigate to settings
+    await page.goto(`/org/${org.slug}/settings`)
+
+    // Mock the DELETE request for shutdown
+    await page.route(`**/organizations/${org.slug}`, async route => {
+      if (route.request().method() === 'DELETE') {
+        await route.fulfill({
+          status: 204,
+        })
+      } else {
+        await route.continue()
+      }
+    })
+
+    // Click delete button
+    await page.getByRole('button', { name: /deletar organização/i }).click()
+
+    // Wait for navigation to home
+    await expect(page).toHaveURL('/')
+  })
+
+  test('should display delete organization section for admin users', async ({
+    page,
+  }) => {
+    const uniqueId = Date.now()
+    const orgName = `Auth Delete Org ${uniqueId}`
+    const domain = `authdelete${uniqueId}.com`
+
+    // Create organization
+    const org = await createOrganization(page, orgName, domain)
+
+    // Navigate to settings
+    await page.goto(`/org/${org.slug}/settings`)
+
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle')
+
+    // Verify delete organization section is visible using CardTitle text
+    await expect(
+      page.getByText('Deletar orgnização', { exact: false })
+    ).toBeVisible()
+
+    // Verify description text
+    await expect(
+      page.getByText(/isso irá apagar todos os dados da organização/i)
+    ).toBeVisible()
+
+    // Verify delete button is present
+    await expect(
+      page.getByRole('button', { name: /deletar organização/i })
+    ).toBeVisible()
+  })
 })
