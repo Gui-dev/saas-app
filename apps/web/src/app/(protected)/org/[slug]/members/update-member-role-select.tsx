@@ -25,7 +25,7 @@ export const UpdateMemberRoleSelect = ({
 
   return (
     <Select onValueChange={handleUpdateMemberRole} {...props}>
-      <SelectTrigger className="h-8 w-32">
+      <SelectTrigger className="h-8 w-32" data-testid="role-select">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
