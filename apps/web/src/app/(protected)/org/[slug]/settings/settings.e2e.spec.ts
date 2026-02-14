@@ -1,5 +1,5 @@
 import fs from 'node:fs'
-import { expect, test } from '@playwright/test'
+import { expect, type Page, test } from '@playwright/test'
 
 // Read the auth token from storage state
 const getAuthToken = () => {
@@ -17,7 +17,7 @@ const getAuthToken = () => {
 }
 
 // Helper to create organization and derive slug from name
-const createOrganization = async (page: any, name: string, domain: string) => {
+const createOrganization = async (page: Page, name: string, domain: string) => {
   const token = getAuthToken()
 
   // Create organization via API
