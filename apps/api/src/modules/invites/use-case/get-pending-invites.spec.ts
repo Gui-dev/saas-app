@@ -18,7 +18,7 @@ describe('GetPendingInvitesUseCase', () => {
 
   it('should return pending invites for a user', async () => {
     // Arrange
-    const userId = randomUUID()
+    const _userId = randomUUID()
     const email = 'test@example.com'
 
     // Create a user
@@ -54,7 +54,7 @@ describe('GetPendingInvitesUseCase', () => {
 
   it('should return empty array for user with no pending invites', async () => {
     // Arrange
-    const userId = randomUUID()
+    const _userId = randomUUID()
     const email = 'test@example.com'
 
     // Create a user
@@ -83,7 +83,7 @@ describe('GetPendingInvitesUseCase', () => {
 
   it('should return only invites for the specified user', async () => {
     // Arrange
-    const userId1 = randomUUID()
+    const _userId1 = randomUUID()
     const _userId2 = randomUUID()
 
     // Create first user
@@ -126,7 +126,7 @@ describe('GetPendingInvitesUseCase', () => {
 
   it('should return invites with proper organization and author data', async () => {
     // Arrange
-    const userId = randomUUID()
+    const _userId = randomUUID()
     const email = 'test@example.com'
     const organizationId = randomUUID()
     const authorId = randomUUID()

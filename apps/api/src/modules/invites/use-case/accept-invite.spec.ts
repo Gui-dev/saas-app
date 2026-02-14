@@ -20,7 +20,7 @@ describe('AcceptInviteUseCase', () => {
     // Arrange
     const organizationId = randomUUID()
     const authorId = randomUUID()
-    const userId = randomUUID()
+    const _userId = randomUUID()
     const email = 'test@example.com'
 
     // Create an invite
@@ -83,7 +83,7 @@ describe('AcceptInviteUseCase', () => {
     // Arrange
     const organizationId = randomUUID()
     const authorId = randomUUID()
-    const userId = randomUUID()
+    const _userId = randomUUID()
 
     // Create an invite with one email
     const createdInvite = await inviteRepository.create({
@@ -110,7 +110,7 @@ describe('AcceptInviteUseCase', () => {
     // Arrange
     const organizationId = randomUUID()
     const authorId = randomUUID()
-    const userId = randomUUID()
+    const _userId = randomUUID()
     const email = 'test@example.com'
 
     // Create an invite
