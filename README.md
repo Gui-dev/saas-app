@@ -15,7 +15,8 @@
 <!-- ![Dashboard](docs/images/dashboard.png) -->
 <!-- ![Demo Video](docs/videos/demo.gif) -->
 
-**🚀 Demo ao vivo:** [Adicione o link quando disponível]
+**🚀 Demo ao vivo:** [![Vídeo](https://img.youtube.com/vi/gXohhQNUm74/0.jpg)](https://youtu.be/gXohhQNUm74)
+
 
 ---
 
