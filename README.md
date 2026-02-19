@@ -11,14 +11,12 @@
 
 ## 📸 Demo
 
-<!-- Adicione aqui screenshots ou GIFs demonstrativos do projeto -->
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=gXohhQNUm74" target="_blank">
+    <img src="https://img.youtube.com/vi/gXohhQNUm74/0.jpg" width="600" alt="Watch the demo"/>
+  </a>
+</p>
 <!-- ![Dashboard](docs/images/dashboard.png) -->
-<!-- ![Demo Video](docs/videos/demo.gif) -->
-
-**🚀 Demo ao vivo:** [![Vídeo](https://img.youtube.com/vi/gXohhQNUm74/0.jpg)](https://youtu.be/gXohhQNUm74)
-
-
----
 
 ## ✨ Funcionalidades
 
